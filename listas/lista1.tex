@@ -1,0 +1,264 @@
+\section{Lista 1 (05/04/2026)}
+
+\begin{exercise}
+    (1.1.4)
+  Seja $\Omega = C([0,1])$ com a $\sigma$-álgebra $\mathcal{F} =
+  \mathcal{B}(C[0,1])$ (com a topologia induzida
+  pela norma do sup). Mostre que
+  \[
+    \{f \in C([0,1]) : \forall t\; f(t) \geq 0 \} \in \mathcal{F}
+  \]
+\end{exercise}
+
+\begin{proof}
+    % Dado $\alpha \in \R$, seja $g_\alpha \in C([0,1])$ a função constante em $\alpha$. 
+    Dados $n,m \geq 1$ inteiros, considere as bolas abertas 
+    \[
+        A_{n,m} = B(g_{n/2}, n/2 + 1/m) = \{f \in C([0,1]) : ||f - n/2||_\infty < n/2 + 1/m\}
+    \]
+    onde $g_{n/2}(t) = n/2$ para todo $t$. Notamos que 
+    \[
+        B_m = \bigcup_{n \geq 1} A_{n,m} = \{f \in C([0,1]) : f > -1/m\} \in \mathcal{F}
+    \]
+    e portanto $\{f \in C([0,1]) : f \geq 0\} = \bigcap_{m\geq 1} B_m \in \mathcal{F}$.
+\end{proof}
+
+\begin{exercise}
+    (1.2.5)
+  Seja $n \geq 1$ um número inteiro e considere $\Omega= \{0, 1\}^n$,
+  o hipercubo
+  de dimensão $n$.
+  Para cada $i \in \{1, . . . , n\}$, definimos o evento $A_i =
+  \{\omega \in \Omega : \omega(i) = 1\}$. Dadas
+  duas probabilidades $\Pr$ e $\Pr '$ em $(\Omega, P(\Omega))$,
+  mostre que se $\Pr(B) = \Pr'(B)$ para todos
+  conjuntos $B$ dados por interseções de $A_i$, então $\Pr = \Pr'$.
+\end{exercise}
+\begin{proof}
+    % ia repetir a prova de dynkin
+    % Sendo $\Omega$ um conjunto finito e já que estamos tomando a $\sigma$-álgebra das partes, segue que
+    % para todo $E \in P(\Omega)$
+    % \[
+    %     \Pr(E) = \sum_{x \in E} \Pr\{x\}
+    % \]
+    % e o mesmo vale para $\Pr'$. Então basta mostrar que para todo $x \in \Omega$, $\Pr\{x\} = \Pr'\{x\}$.
+
+    % Pela hipótese e pelo princípio da inclusão e exclusão, dado $J \subset [n]$, vale que 
+    % \begin{align*}
+    %     \Pr(\bigcup_{j \in J} A_j) =& \sum_{k=1} (-1)^{k-1} 
+    %     \sum_{1 \leq i_1 \leq \dots \leq i_k \leq n} \Pr(A_{i_1} \cap \dots \cap A_{i_k})\\ 
+    %     =& \sum_{k=1} (-1)^{k-1}  \sum_{1 \leq i_1 \leq \dots \leq i_k \leq n} \Pr'(A_{i_1} \cap \dots \cap A_{i_k}) = \Pr'(\bigcup_{j \in J} A_j)
+    % \end{align*}
+    % logo as medidas são idênticas em uniões de $A_i$. Da mesma forma, segue que 
+
+    A hipótese nos diz que se $\Pi = \pi(\{A_i\})$ é o $\pi$-sistema 
+    formado pelos $A_i$'s, então para todo $C \in \Pi$, $\Pr(C) = \Pr'(C)$. Segue, pelo teorema de Dynkin, que para qualquer 
+    $C \in \sigma(\{A_i\})$, temos $\Pr(C) = \Pr'(C)$.
+
+    Vamos mostrar que $P(\Omega) \subset \sigma(\{A_i\})$ e concluir a prova. Dado qualquer elemento $w \in \Omega$,
+    seja $I(w) = \{i \in [n] : w(i) = 1\}$, temos 
+    \[
+        \{w\} = \bigcap_{i \in I(w)} A_i \cap \bigcap_{j \not \in I(w)} A_j^c \quad \in\quad  \sigma(\{A_i\}).
+    \]
+    Como $\Omega$ é finito, segue que $P(\Omega) \subset \sigma(\{A_i\})$.
+\end{proof}
+
+\begin{exercise}
+    (1.3.1)
+  Dê um exemplo de um $\lambda$-sistema que não seja uma $\sigma$-álgebra.
+\end{exercise}
+\begin{proof}
+    Eu não fiz esse exercício de fato, vi na internet e Bruno sugeriu uma construção simples (o João Ferreira 
+    sugeriu uma construção não trivial muito interessante também!). Seja $\Omega = \{0,1,2,3\}$ e considere
+    \[
+        S = \{\varnothing, \{1,2\}, \{3,4\}, \{1,3\}, \{2,4\}, \{1,2,3,4\}\}.
+    \]
+    Vamos mostrar que $S$ é um $\lambda$-sistema, mas não é uma $\sigma$-álgebra. É claro que $S$ contem $\varnothing$ e é 
+    fechado por complemento. Agora, as únicas uniões disjuntas possíveis em $S$ (descartando o vazio) são 
+    \[
+        \{1,2\} \cup \{3,4\} = \Omega \quad \text{e} \quad \{1,3\} \cup \{2,4\} = \Omega
+    \]
+    portanto, $S$ é fechado por união disjunta e é $\lambda$-sistema. Mas $S$ não é uma $\sigma$-álgebra, pois não possui $\{1,2\} \cap \{1,3\} = \{1\}$.
+\end{proof}
+
+\begin{exercise}
+    (1.4.4)
+  Dada $X : (\Omega, \mathcal{F}) \to (\mathcal{E}, \Sigma)$ varíavel
+  aleatória (ou função mensurável). A $\sigma$-álgebra
+  gerada por $x$ é definida por $\sigma(X) := \{X^{-1}(A) : A \in
+  \Sigma\}$. Seja $X:\R^2 \to \R$ dada por $X(w_1,w_2) = \max(w_1,w_2)$.
+  Descreva $\sigma(X)$.
+\end{exercise}
+
+\begin{proof}
+    Não sei exatamente o quão bem quer que eu descreva. Dado $A \in \mathcal{B}(\R)$, temos 
+    \[
+        X^{-1}(A) = \{(w_1,w_2) \in \R^2 : \max(w_1,w_2) \in A\} = 
+        (\{w_1 \leq w_2\} \cap (\R \times A)) \cup (\{w_2 \leq w_1\} \cap (A \times \R))
+    \]
+    logo $\sigma(X)$ é coleção desses conjuntos onde $A \in \mathcal{B}(\R)$. Ela não é $\mathcal{B}(\R^2)$, 
+    pois para todo conjunto não vazio $X^{-1}(A) \in \sigma(X)$, temos que $A$ não é vazio e portanto a 
+    semi-reta $\{(a, t): t \leq a\}$ pertence a $X^{-1}(A)$. Como é claramente falso que todo conjunto de $\mathcal{B}(\R^2)$
+    possui uma semireta infinita, segue que $\sigma(X) \neq \mathcal{B}(\R^2)$.
+\end{proof}
+
+\begin{exercise}
+    (1.4.6)
+  Seja $X : [0,1] \to \{0,1\}$ dada por $X = \id[A]$ para $A$
+  mensurável em $[0,1]$. Mostre que $X_*\Pr = \text{Ber}(p)$ para
+  algum $p \in [0,1]$. Calcule o valor de $p$.
+\end{exercise}
+\begin{proof}
+    É claro que
+    \[
+        X_*\Pr(S) = \Pr(\id[A]^{-1}(S)) = \begin{cases}
+            1 & \text{se}\; S = \{0,1\}\\
+            \Pr(A) & \text{se}\; S = \{1\}\\
+            1 - \Pr(A) & \text{se}\; S = \{0\}\\
+            0 & \text{se}\; S = \varnothing\\
+        \end{cases}
+    \]
+    portanto, $X_*\Pr = \text{Ber}(\Pr(A))$.
+\end{proof}
+
+\begin{exercise}
+    (1.4.7)
+  Sejam $X,Y$ variáveis aleatórias tais que $X$ é nula quase
+  certamente. Mostre que $X+Y$ tem a mesma distribuição de $Y$.
+\end{exercise}
+\begin{proof}
+    Basta notar que, dado $E$ mensurável no contradomínio de $X,Y$,
+    \begin{align*}
+        \Pr(X + Y \in E) &= \Pr((X + Y \in E) \land (X = 0 \lor X \neq 0))\\
+            &= \Pr(Y \in E) + \Pr((X + Y \in E) \land X \neq 0) = \Pr(Y \in E).
+    \end{align*}
+\end{proof}
+
+\begin{exercise}
+  (2.2.3 e 2.2.4) 
+    Seja $X : ([0,1], \mathcal{B}(\R)) \to (S^1,\mathcal{B}(\C))$ dada por $X(t) = \exp(2i\pi t)$. Definimos 
+    \[
+        \mathcal{U}_{S^1} := X_*\Pr
+    \]
+    onde $\Pr = \text{Unif}([0,1])$.
+
+
+  Mostre que $\mathcal{U}_{S^1}$ é invariante por
+  rotação e não é absolutamente contínua em relação a medida
+  de Lebesgue em $\C$.
+\end{exercise}
+
+\begin{proof}
+    Dado $E \subset S^1$ mensurável e $e^{2\pi i\theta} \in S^1$, segue que 
+    \begin{align*}
+        \mathcal{U}_{S^1}(e^{2\pi i\theta} E) &= \Pr(t \in [0,1] : e^{2i\pi t} \in e^{2\pi i\theta} E)\\
+        &= \Pr(t \in [0,1] : e^{2i\pi (t - \theta)} \in E)\\
+        &= \Pr(u \in [0,1] : e^{2i\pi u} \in E) = \mathcal{U}_{S^{-1}}(E)
+    \end{align*}
+    onde a terceira igualdade segue da invariância da medidade de Lebesgue por translação. De maneira mais concreta,
+    dado $U \subset [0,1]$ e $\alpha \in [0,1)$, então $m(U) = m(\{u + \alpha \mod 1: u \in U\})$.
+
+    A medida não é absolutamente contínua em relação à Lebesgue no plano pois $m(S^1) = 0$ enquanto $\mathcal{U}_{S^1}(S^1) = 1$.
+\end{proof}
+
+\begin{exercise}
+    (2.3.2)
+  Calcule $F_{\text{Exp}(\lambda)}$ ($F_X$ é a notação da função cumulativa usada pelo Augusto).
+\end{exercise}
+\begin{proof}
+    \[
+    F_{\text{Exp}(\lambda)}(t) = \int_{0}^{t} \lambda e^{-\lambda x} dx  = 1 - e^{-\lambda t}
+    \]
+\end{proof}
+
+\begin{exercise}
+    (2.3.3)
+  Mostre, usando o Teorema da Extensão de Caratheodory, que se $F:\R \to [0,1]$ é
+  uma função que satisfaz:
+  \begin{enumerate}[label=(\roman*)]
+    \item $\lim_{x\to -\infty} F(x) = 0$, $\lim_{x\to \infty} F(x) = 1$
+    \item $F$ é monótona não decrescente
+    \item $F$ é contínua à direita e possui limite à esquerda (càdlag).
+  \end{enumerate}
+
+  Então existe uma única medida de probabilidade $\Pr$ em $(\R,
+  \mathcal{B}(\R))$ tal que $F$ é função cumulativa de $\Pr$.
+\end{exercise}
+
+Para esse exercício vou enunciar o Teorema de Extensão de Caratheodory e 
+seguir a prova do Durret.
+\begin{theorem}
+    \label{trm:caratheodory_extension}
+    Seja $\mathcal{S}$ uma semi-álgebra e $\mu$ definida em $\mathcal{S}$ com $\mu(\varnothing) = 0$. Suponha que $\mu$ satisfaz: 
+    \begin{enumerate}[label=(\roman*)]
+        \item Se $S, (S_i)_{i=1}^{N} \in \mathcal{S}$ com $S = \bigsqcup_{i = 1}^N S_i$ então $\mu(S) = \sum_{i=1}^N \mu(S_i)$.
+        \item Se $S, (S_i)_{i=1}^{\infty} \in \mathcal{S}$ com $S = \bigsqcup_{i = 1}^\infty S_i$ então $\mu(S) \leq \sum_{i=1}^\infty \mu(S_i)$.
+    \end{enumerate}
+    Então $\mu$ tem uma única extensão $\hat{\mu}$ que é uma medida na álgebra $A(\mathcal{S})$ gerada por $S$. Se $\hat{\mu}$
+    é $\sigma$-finita então existe uma única extensão $\nu$ que é uma medida em $\sigma(\mathcal{S})$.
+\end{theorem}
+
+\begin{proof}
+    (Do exercício) É bem conhecido que o conjunto dos intervalos semi-abertos $(a,b]$ com $-\infty \leq a \leq b \leq \infty$
+    formam uma semi-álgebra. Definimos $\mu((a,b]) = F(b) - F(a)$ e vamos verificar
+    que $\Pr$ satisfaz as condições (i) e (ii) do teorema [\ref{trm:caratheodory_extension}].
+
+    Para a primeira condição, note que se $(a,b] = \bigsqcup_{i=1}^N (a_i,b_i]$ então devemos ter $a_1 = a$, $b_N = b$ e 
+    $b_i = a_{i+1}$ para todo $1 \leq i \leq N-1$ . Portanto,
+    \[
+        \mu((a,b]) = F(b) - F(a) = \sum_{i = 1}^{N} F(b_i) - F(a_i) = \sum_{i=1}^{N} \mu((a_i,b_i])
+    \]
+    (Aqui fazemos o abuso notacional que $F(-\infty) = 0$ e $F(\infty) = 1$).
+
+    Para a segunda condição, precisaremos da hipótese de continuidade a direita. Inicialmente, seja $S = (a,b]$ com $-\infty < a \leq b < \infty$
+    e suponha $S = \bigsqcup_{i=1}^{\infty} (a_i,b_i]$. Dado $\eps > 0$ arbitrário, vamos mostrar que 
+    \[
+        \mu((a,b]) = F(b) - F(a) \leq \eps + \sum_{i = 1}^{\infty} \mu((a_i,b_i]) = \eps/2 + \sum_{i = 1}^{\infty} \mu((a_i,b_i]) + \frac{\eps}{2^{i+1}} 
+    \]
+    Por continuidade a direita, podemos tomar $\delta > 0$ tão pequento tal que $F(a+\delta) - F(a) < \eps/2$.
+    Da mesma forma, para cada $i$, tomamos $\delta_i > 0$ com $F(b_i + \delta_i) < F(b_i) + \eps/2^{i+1}$. Segue que 
+    \[
+        (a+ \delta, b] \subset [a + \delta, b] \subset \bigcup_{i=1}^\infty (a_i, b_i + \delta_i),
+    \]
+    como o segundo conjunto é compacto, possui subcobertura $1 \leq i_1 < \dots <i_M$ finita e vale
+    \[
+        (a + \delta, b] \subset \bigcup_{j=1}^{M} (a_{i_j}, b_{i_j} + \delta_{i_j}) \subset \bigcup_{j=1}^{M} (a_{i_j}, b_{i_j} + \delta_{i_j}].
+    \]
+    Temos
+    \begin{equation}
+        \label{exer:eq:cebola}
+        \mu((a+\delta, b]) = F(b) - F(a + \delta) \leq \sum_{j=1}^{M} F(b_{i_j} + \delta_{i_j}) - F(a_{i_j}) \leq \sum_{j=1}^{\infty} F(b_j) - F(a_j) + \frac{\eps}{2^{i+1}} 
+    \end{equation}
+    substituindo,
+    \[
+        \mu((a,b]) = \mu((a + \delta, b]) + F(a + \delta) - F(a) \leq \eps + \sum_{i = 1}^{\infty} \mu((a_i,b_i])
+    \]
+    como queríamos mostrar.
+
+    Usamos nessa demonstração (em [\ref{exer:eq:cebola}]) uma propriedade usual de pre-medidas em álgebras que se $S \subset \bigcup_{i=1}^N S_i$ então 
+    vale que $\mu(S) \leq \sum_{i = 1}^{N} \mu(S_i)$. (É o argumento da cebola).
+
+    Para finalizar, basta mostrar o resultado para $a,b$ potencialmente $-\infty$ e $\infty$. Mas isso segue da existência do limite da $F$. 
+    Se $(A,B] \subset (a,b] \subset \bigsqcup_{i=1}^{\infty} (a_i, b_i]$ com $-\infty < A \leq B < \infty$, vimos que 
+    $\mu((A,B]) \leq \sum_{i = 1}^{\infty} \mu((a_i,b_i])$. Fazendo $A$ ou $B$ tender para $-\infty$ ou $+\infty$ nos dá o resultado geral.
+    
+    Por Caratheodory [\ref{trm:caratheodory_extension}], temos uma única medida ($\sigma$-finita já que $\mu([-\infty, \infty)) = 1$) na 
+    $\sigma$-álgebra gerada pelo semi-abertos, que é $\mathcal{B}(\R)$.
+    
+\end{proof}
+
+\begin{exercise}
+    (2.3.12)
+  Se $X \in L^1(P)$ e $\Pr(X \geq x) = \Pr(X \leq -x)$ para todo $x$.
+  Então $\Ex X = 0$.
+\end{exercise}
+\begin{proof}
+    Basta escrever (notando que $\Ex[X \id[X = 0]] = 0$) que 
+    \begin{align*}
+        \Ex X &= \Ex[X \id[X \geq 0]] + \Ex[X\id[X \leq 0]] - \E[X \id[X = 0]]\\
+            &= \Ex[X \id[X \geq 0]] - \Ex[-X \id[X \leq 0]]\\
+            &= \int_{0}^{\infty} \Pr(X\id[X \geq 0] \geq t)dt - \int_{0}^{\infty} \Pr(-X\id[X \leq 0] \geq t)dt\\
+            &= \int_{0}^{\infty} \Pr(X \geq t)dt - \int_{0}^{\infty} \Pr(X \leq -t)dt\\
+            &= \int_{0}^{\infty} \Pr(X \geq t) - \Pr(X \leq -t) dt = 0
+    \end{align*}
+\end{proof}
