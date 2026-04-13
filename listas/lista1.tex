@@ -155,7 +155,7 @@
 	Basta notar que, dado $E$ mensurável no contradomínio de $X,Y$,
 	\begin{align*}
 		\Pr(X + Y \in E) &= \Pr((X + Y \in E) \land (X = 0 \lor X \neq 0))\\
-		&= \Pr(Y \in E) + \Pr((X + Y \in E) \land X \neq 0) = \Pr(Y \in E).
+		&= \Pr((Y \in E) \land X = 0) + \Pr((X + Y \in E) \land X \neq 0) = \Pr(Y \in E).
 	\end{align*}
 \end{proof}
 
@@ -166,31 +166,49 @@
 	\[
 		\mathcal{U}_{S^1} := X_*\Pr
 	\]
-	onde $\Pr = \text{Unif}([0,1])$.
-
-	Mostre que $\mathcal{U}_{S^1}$ é invariante por
+	onde $\Pr = \text{Unif}([0,1])$. Mostre que $\mathcal{U}_{S^1}$ é invariante por
 	rotação e não é absolutamente contínua em relação a medida
 	de Lebesgue em $\C$.
 \end{exercise}
 
 \begin{proof}
-	Dado $E \subset S^1$ mensurável e $e^{2\pi i\theta} \in S^1$, segue que
+	Vamos provar a invariância por rotaçao. Dado $E \subset S^1$ mensurável e $e^{2\pi i\theta} \in S^1$, queremos
+	que $X_*\Pr(E) = X_*\Pr(e^{2\pi i \theta}E)$. Sejam 
+	\[
+		A = \{t \in [0,1]: e^{2\pi i t} \in E\} \quad \text{ e } \quad B = \{t \in [0,1]: e^{2\pi i t} \in e^{2\pi i \theta}E\},
+	\]
+	basta ter que $m(A) = m(B)$. Usando $\{a\}_\text{frac}$ para denotar a parte fracionária do real $a$, note que (trocando $t - \theta$ por $u$),
+	\[
+		B = \{t \in [0,1] : e^{2\pi i (t - \theta)} \in E\} = \{ \{u + \theta\}_\text{frac} : e^{2\pi i u} \in E\}
+	\]
+	mas então $m(B) = m(\{A + \theta\}_\text{frac})$ e pela invariância por translação da medida de Lebesgue $m(\cdot)$,
+	segue que $m(B) = m(A)$. Mais concretamente, 
 	\begin{align*}
-		\mathcal{U}_{S^1}(e^{2\pi i\theta} E) &= \Pr(t \in [0,1] : e^{2i\pi
-		t} \in e^{2\pi i\theta} E)\\
-		&= \Pr(t \in [0,1] : e^{2i\pi (t - \theta)} \in E)\\
-		&= \Pr(u \in [0,1] : e^{2i\pi u} \in E) = \mathcal{U}_{S^{-1}}(E)
+		m(\{A + \theta\}_\text{frac}) &= \int_0^1 \id[x \in \{A + \theta\}_\text{frac}] dx = \int_0^1 \id[\{x - \theta\}_\text{frac} \in A] dx\\
+		&= \int_0^{\theta} \id[x - \theta + 1 \in A]dx + \int_{\theta}^{1}\id[x - \theta \in A] dx\\
+		&= \int_{1-\theta}^{1} \id[z \in A] dz + \int_{0}^{1-\theta} \id[u \in A] du
 	\end{align*}
-	onde a terceira igualdade segue da invariância da medidade de
-	Lebesgue por translação. De maneira mais concreta,
-	dado $U \subset [0,1]$ e $\alpha \in [0,1)$, então $m(U) = m(\{u +
-	\alpha \pmod 1: u \in U\})$, pois
-	\begin{align*}
-		m(U + a \pmod 1) &= \int_{0}^1 \id[x + a \pmod 1 \in U] dx \\
-		&=\int_{0}^{1-a} \id[x + a \in U] dx + \int_{1-a}^1 \id [x + a - 1 \in U] dx\\
-		&= \int_{a}^{1} \id[y \in U] dy + \int_{0}^{a} \id[z \in U] dz = m(U)
-	\end{align*}
-	onde fizemos a substituição $y = x + a$ e $z = x + a - 1$.
+	onde a segunda igualdade vale, pois dados $x,y,\theta \in [0,1)$, $x = \{y + \theta\}_\text{frac}$ se e somente se $\{x - \theta\}_\text{frac} = y$.
+	E a última igualdade vale quando fizemos a substituição $z = x - \theta + 1$ e $u = x - \theta$ nas últimas duas integrais.
+
+
+	% \begin{align*}
+	% 	\mathcal{U}_{S^1}(e^{2\pi i\theta} E) &= \Pr( \{t \in [0,1] : e^{2i\pi
+	% 	t} \in e^{2\pi i\theta} E\})\\
+	% 	&= \Pr(\{t \in [0,1] : e^{2i\pi (t - \theta)} \in E\})\\
+	% 	&= \Pr(\{ \{u + \theta\}_\text{frac} \in [0,1] : e^{2i\pi u} \in E\}) 
+	% 	% = \mathcal{U}_{S^{-1}}(E)
+	% \end{align*}
+	% onde a terceira igualdade segue da invariância da medidade de
+	% Lebesgue por translação. De maneira mais concreta,
+	% dado $U \subset [0,1]$ e $\alpha \in [0,1)$, então $m(U) = m(\{ \{u +
+	% \alpha\}_\text{frac} : u \in U\})$, pois
+	% \begin{align*}
+	% 	m(\{U + a\}_\text{frac}) &= \int_{0}^1 \id[\{x - a\} \in U] dx \\
+	% 	&=\int_{0}^{1-a} \id[x + a \in U] dx + \int_{1-a}^1 \id [x + a - 1 \in U] dx\\
+	% 	&= \int_{a}^{1} \id[y \in U] dy + \int_{0}^{a} \id[z \in U] dz = m(U)
+	% \end{align*}
+	% onde fizemos a substituição $y = x + a$ e $z = x + a - 1$.
 
 	A medida não é absolutamente contínua em relação à Lebesgue no plano
 	pois $m(S^1) = 0$ enquanto $\mathcal{U}_{S^1}(S^1) = 1$.
