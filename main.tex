@@ -1,6 +1,7 @@
 \documentclass[11pt]{article}
 
-\usepackage{amsmath,amssymb,amsthm,bbm,mathtools,calc,verbatim,enumitem,tikz,url,mathrsfs,cite,fullpage,hyperref,bm,
+\usepackage{amsmath,amssymb,amsthm,bbm,mathtools,calc,verbatim,
+	enumitem,tikz,url,mathrsfs,cite,fullpage,hyperref,bm,
 marvosym}
 \usepackage{dsfont}
 \usepackage{float}
@@ -43,18 +44,18 @@ marvosym}
 {\endinnercustomexercise}
 
 \newenvironment{clmproof}[1]{
-  \begin{proof}[Proof of
-  Claim~\ref{#1}]\let\qednow\qedsymbol\renewcommand{\qedsymbol}{}}{\; \qednow
+	\begin{proof}[Proof of
+	Claim~\ref{#1}]\let\qednow\qedsymbol\renewcommand{\qedsymbol}{}}{\; \qednow
 \end{proof}}
 
 \newcounter{step}
 \newenvironment{proofsteps}{
-  \setcounter{step}{0}
-  \begin{list}{\textbf{Step \arabic{step}.}}{\usecounter{step}
-      \setlength{\leftmargin}{1.5em}
-    \setlength{\itemsep}{0.3em}}
-  }{
-  \end{list}
+	\setcounter{step}{0}
+	\begin{list}{\textbf{Step \arabic{step}.}}{\usecounter{step}
+			\setlength{\leftmargin}{1.5em}
+		\setlength{\itemsep}{0.3em}}
+	}{
+	\end{list}
 }
 
 \newcommand{\stepcomment}[1]{\hfill {\small\textit{#1}}}
@@ -80,13 +81,13 @@ marvosym}
 \newcommand{\floor}[1]{\lfloor #1 \rfloor}
 \newcommand{\ceil}[1]{\lceil #1 \rceil}
 \newcommand{\prob}{
-  \begin{problem}
+	\begin{problem}
 \end{problem}}
 \newcommand{\exer}{
-  \begin{exercise}
+	\begin{exercise}
 \end{exercise}}
 \newcommand{\cexer}[1]{
-  \begin{customprob}{#1}
+	\begin{customprob}{#1}
 \end{customprob}}
 
 \renewcommand{\leq}{\leqslant}
@@ -147,14 +148,14 @@ marvosym}
 \def\vp{\varphi}
 
 \hypersetup{
-  colorlinks=true,
-  linkcolor=blue,
-  urlcolor=blue,
+	colorlinks=true,
+	linkcolor=blue,
+	urlcolor=blue,
 }
 
 \pagestyle{plain}
 \author{
-  Henrique
+	Henrique
 }
 \title{Listas de Probabilidade 1}
 
@@ -165,10 +166,21 @@ marvosym}
 \setcounter{section}{-1}
 \section{Notação e Informações}
 
-\begin{enumerate}
-  \item Uso $A \sqcup B$ para representar uma união disjunta entre $A$ e $B$.
+Ao decorrer do curso, vou escrever minhas soluções dos exercícios
+neste arquivo. Tem alguns motivos para isso:
+\begin{enumerate}[label=(\roman*)]
+	\item Posso reutilizar resultados passados
+	\item Está tudo relativamente organizado se um futuro henrique quiser ver.
+	\item Há um certo senso de completude no final do curso.
 \end{enumerate}
+Peço desculpa se o monitor ou o professor não gostarem desse formato.
+Podem falar comigo que posso separar os arquivos.
+O código fonte pode ser encontrado em \url{URL}.
 
+Segue aqui uma lista de usos de notação que podem não ser convencionais.
+\begin{enumerate}
+	\item Uso $A \sqcup B$ para representar uma união disjunta entre $A$ e $B$.
+\end{enumerate}
 
 % \section{Exercícios legais do Tao}
 % \input{tao/cap1.tex}

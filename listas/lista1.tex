@@ -184,7 +184,13 @@
 	onde a terceira igualdade segue da invariância da medidade de
 	Lebesgue por translação. De maneira mais concreta,
 	dado $U \subset [0,1]$ e $\alpha \in [0,1)$, então $m(U) = m(\{u +
-	\alpha \mod 1: u \in U\})$.
+	\alpha \pmod 1: u \in U\})$, pois
+	\begin{align*}
+		m(U + a \pmod 1) &= \int_{0}^1 \id[x + a \pmod 1 \in U] dx \\
+		&=\int_{0}^{1-a} \id[x + a \in U] dx + \int_{1-a}^1 \id [x + a - 1 \in U] dx\\
+		&= \int_{a}^{1} \id[y \in U] dy + \int_{0}^{a} \id[z \in U] dz = m(U)
+	\end{align*}
+	onde fizemos a substituição $y = x + a$ e $z = x + a - 1$.
 
 	A medida não é absolutamente contínua em relação à Lebesgue no plano
 	pois $m(S^1) = 0$ enquanto $\mathcal{U}_{S^1}(S^1) = 1$.

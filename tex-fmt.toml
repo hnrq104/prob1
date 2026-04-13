@@ -5,4 +5,5 @@ wrap = true
 wraplen = 80
 tabsize = 1
 tabchar = "tab"
+wrap-chars = [" ", ",", "."]
 stdin = false
