@@ -152,10 +152,11 @@
 	certamente. Mostre que $X+Y$ tem a mesma distribuição de $Y$.
 \end{exercise}
 \begin{proof}
-	Basta notar que, dado $E$ mensurável no contradomínio de $X,Y$,
+	Basta notar que, dado $E$ mensurável na reta,
 	\begin{align*}
 		\Pr(X + Y \in E) &= \Pr((X + Y \in E) \land (X = 0 \lor X \neq 0))\\
-		&= \Pr((Y \in E) \land X = 0) + \Pr((X + Y \in E) \land X \neq 0) = \Pr(Y \in E).
+		&= \Pr((Y \in E) \land X = 0) + \Pr((X + Y \in E) \land X \neq 0) =
+		\Pr(Y \in E).
 	\end{align*}
 \end{proof}
 
@@ -166,37 +167,46 @@
 	\[
 		\mathcal{U}_{S^1} := X_*\Pr
 	\]
-	onde $\Pr = \text{Unif}([0,1])$. Mostre que $\mathcal{U}_{S^1}$ é invariante por
+	onde $\Pr = \text{Unif}([0,1])$. Mostre que $\mathcal{U}_{S^1}$ é
+	invariante por
 	rotação e não é absolutamente contínua em relação a medida
 	de Lebesgue em $\C$.
 \end{exercise}
 
 \begin{proof}
-	Vamos provar a invariância por rotaçao. Dado $E \subset S^1$ mensurável e $e^{2\pi i\theta} \in S^1$, queremos
-	que $X_*\Pr(E) = X_*\Pr(e^{2\pi i \theta}E)$. Sejam 
+	Vamos provar a invariância por rotaçao. Dado $E \subset S^1$
+	mensurável e $e^{2\pi i\theta} \in S^1$, queremos
+	que $X_*\Pr(E) = X_*\Pr(e^{2\pi i \theta}E)$. Sejam
 	\[
-		A = \{t \in [0,1]: e^{2\pi i t} \in E\} \quad \text{ e } \quad B = \{t \in [0,1]: e^{2\pi i t} \in e^{2\pi i \theta}E\},
+		A = \{t \in [0,1]: e^{2\pi i t} \in E\} \quad \text{ e } \quad B =
+		\{t \in [0,1]: e^{2\pi i t} \in e^{2\pi i \theta}E\},
 	\]
-	basta ter que $m(A) = m(B)$. Usando $\{a\}_\text{frac}$ para denotar a parte fracionária do real $a$, note que (trocando $t - \theta$ por $u$),
+	basta ter que $m(A) = m(B)$. Usando $\{a\}_\text{frac}$ para denotar
+	a parte fracionária do real $a$, note que (trocando $t - \theta$ por $u$),
 	\[
-		B = \{t \in [0,1] : e^{2\pi i (t - \theta)} \in E\} = \{ \{u + \theta\}_\text{frac} : e^{2\pi i u} \in E\}
+		B = \{t \in [0,1] : e^{2\pi i (t - \theta)} \in E\} = \{ \{u +
+		\theta\}_\text{frac} : e^{2\pi i u} \in E\}
 	\]
-	mas então $m(B) = m(\{A + \theta\}_\text{frac})$ e pela invariância por translação da medida de Lebesgue $m(\cdot)$,
-	segue que $m(B) = m(A)$. Mais concretamente, 
+	mas então $m(B) = m(\{A + \theta\}_\text{frac})$ e pela invariância
+	por translação da medida de Lebesgue $m(\cdot)$,
+	segue que $m(B) = m(A)$. Mais concretamente,
 	\begin{align*}
-		m(\{A + \theta\}_\text{frac}) &= \int_0^1 \id[x \in \{A + \theta\}_\text{frac}] dx = \int_0^1 \id[\{x - \theta\}_\text{frac} \in A] dx\\
-		&= \int_0^{\theta} \id[x - \theta + 1 \in A]dx + \int_{\theta}^{1}\id[x - \theta \in A] dx\\
+		m(\{A + \theta\}_\text{frac}) &= \int_0^1 \id[x \in \{A +
+		\theta\}_\text{frac}] dx = \int_0^1 \id[\{x - \theta\}_\text{frac} \in A] dx\\
+		&= \int_0^{\theta} \id[x - \theta + 1 \in A]dx +
+		\int_{\theta}^{1}\id[x - \theta \in A] dx\\
 		&= \int_{1-\theta}^{1} \id[z \in A] dz + \int_{0}^{1-\theta} \id[u \in A] du
 	\end{align*}
-	onde a segunda igualdade vale, pois dados $x,y,\theta \in [0,1)$, $x = \{y + \theta\}_\text{frac}$ se e somente se $\{x - \theta\}_\text{frac} = y$.
-	E a última igualdade vale quando fizemos a substituição $z = x - \theta + 1$ e $u = x - \theta$ nas últimas duas integrais.
-
+	onde a segunda igualdade vale, pois dados $x,y,\theta \in [0,1)$, $x
+	= \{y + \theta\}_\text{frac}$ se e somente se $\{x - \theta\}_\text{frac} = y$.
+	E a última igualdade vale quando fizemos a substituição $z = x -
+	\theta + 1$ e $u = x - \theta$ nas últimas duas integrais.
 
 	% \begin{align*}
 	% 	\mathcal{U}_{S^1}(e^{2\pi i\theta} E) &= \Pr( \{t \in [0,1] : e^{2i\pi
 	% 	t} \in e^{2\pi i\theta} E\})\\
 	% 	&= \Pr(\{t \in [0,1] : e^{2i\pi (t - \theta)} \in E\})\\
-	% 	&= \Pr(\{ \{u + \theta\}_\text{frac} \in [0,1] : e^{2i\pi u} \in E\}) 
+	% 	&= \Pr(\{ \{u + \theta\}_\text{frac} \in [0,1] : e^{2i\pi u} \in E\})
 	% 	% = \mathcal{U}_{S^{-1}}(E)
 	% \end{align*}
 	% onde a terceira igualdade segue da invariância da medidade de
@@ -205,7 +215,8 @@
 	% \alpha\}_\text{frac} : u \in U\})$, pois
 	% \begin{align*}
 	% 	m(\{U + a\}_\text{frac}) &= \int_{0}^1 \id[\{x - a\} \in U] dx \\
-	% 	&=\int_{0}^{1-a} \id[x + a \in U] dx + \int_{1-a}^1 \id [x + a - 1 \in U] dx\\
+	% 	&=\int_{0}^{1-a} \id[x + a \in U] dx + \int_{1-a}^1 \id [x + a -
+	% 1 \in U] dx\\
 	% 	&= \int_{a}^{1} \id[y \in U] dy + \int_{0}^{a} \id[z \in U] dz = m(U)
 	% \end{align*}
 	% onde fizemos a substituição $y = x + a$ e $z = x + a - 1$.
@@ -236,43 +247,72 @@
 		\item $F$ é contínua à direita e possui limite à esquerda (càdlag).
 	\end{enumerate}
 
-	Então existe uma única medida de probabilidade $\Pr$ em $(\R,
-	\mathcal{B}(\R))$ tal que $F$ é função cumulativa de $\Pr$.
+	Então existe uma única medida de probabilidade $\mu$ em $(\R,
+	\mathcal{B}(\R))$ tal que $F$ é função cumulativa de $\mu$.
 \end{exercise}
 
 Para esse exercício vou enunciar o Teorema de Extensão de Caratheodory e
 seguir a prova do Durret.
 \begin{theorem}
 	\label{trm:caratheodory_extension}
-	Seja $\mathcal{S}$ uma semi-álgebra e $\mu$ definida em
-	$\mathcal{S}$ com $\mu(\varnothing) = 0$. Suponha que $\mu$ satisfaz:
-	\begin{enumerate}[label=(\roman*)]
-		\item Se $S, (S_i)_{i=1}^{N} \in \mathcal{S}$ com $S = \bigsqcup_{i
-			= 1}^N S_i$ então $\mu(S) = \sum_{i=1}^N \mu(S_i)$.
-		\item Se $S, (S_i)_{i=1}^{\infty} \in \mathcal{S}$ com $S =
-			\bigsqcup_{i = 1}^\infty S_i$ então $\mu(S) \leq \sum_{i=1}^\infty \mu(S_i)$.
-	\end{enumerate}
-	Então $\mu$ tem uma única extensão $\hat{\mu}$ que é uma medida na
-	álgebra $A(\mathcal{S})$ gerada por $S$. Se $\hat{\mu}$
-	é $\sigma$-finita então existe uma única extensão $\nu$ que é uma
-	medida em $\sigma(\mathcal{S})$.
+	(Extensão de Caratheodory). Seja $\mathcal{G} \subset
+	\mathcal{P}(\Omega)$ uma álgebra
+	de conjuntos em $\Omega$ e suponha que $\mu : \mathcal{G} \to \R^+$
+	satisfaça que:
+	para toda família finita ou enumerável $(A_i)_{i \in I}$ de
+	conjuntos disjuntos de $\mathcal{G}$
+	tal que $\bigsqcup_{i \in I} A_i \in \mathcal{G}$,
+	temos que $\mu(\bigsqcup_{i \in I} A_i) = \sum_{i \in I} \mu(A_i)$.
+	Então existe uma medida $\hat{\mu} : \sigma(\mathcal{G}) \to \R^+$
+	tal que $\hat{\mu}(A) = \mu(A)$ para todo $A \in \mathcal{G}$.
+
+	% Seja $\mathcal{S}$ uma semi-álgebra e $\mu$ definida em
+	% $\mathcal{S}$ com $\mu(\varnothing) = 0$. Suponha que $\mu$ satisfaz:
+	% \begin{enumerate}[label=(\roman*)]
+	% 	\item Se $S, (S_i)_{i=1}^{N} \in \mathcal{S}$ com $S = \bigsqcup_{i
+	% 		= 1}^N S_i$ então $\mu(S) = \sum_{i=1}^N \mu(S_i)$.
+	% 	\item Se $S, (S_i)_{i=1}^{\infty} \in \mathcal{S}$ com $S =
+	% 		\bigsqcup_{i = 1}^\infty S_i$ então $\mu(S) \leq
+	% \sum_{i=1}^\infty \mu(S_i)$.
+	% \end{enumerate}
+	% Então $\mu$ tem uma única extensão $\hat{\mu}$ que é uma medida na
+	% álgebra $A(\mathcal{S})$ gerada por $S$. Se $\hat{\mu}$
+	% é $\sigma$-finita então existe uma única extensão $\nu$ que é uma
+	% medida em $\sigma(\mathcal{S})$.
 \end{theorem}
 
 \begin{proof}
-	(Do exercício) É bem conhecido que o conjunto dos intervalos
-	semi-abertos $(a,b]$ com $-\infty \leq a \leq b \leq \infty$
-	formam uma semi-álgebra. Definimos $\mu((a,b]) = F(b) - F(a)$ e vamos verificar
-	que $\Pr$ satisfaz as condições (i) e (ii) do teorema
-	[\ref{trm:caratheodory_extension}].
+	(Do exercício)
+	Seja $\mathcal{G}$ a álgebra gerada pelo conjunto dos intervalos
+	semiabertos $(a,b]$ com
+	$-\infty \leq a \leq b \leq \infty$. Lembramos (de um curso usual de
+	medida) que todo elemento $S \in \mathcal{G}$
+	se escreve como $\bigsqcup_{i = 1}^n (a_i,b_i]$ para alguma
+	sequência $(a_i,b_i]$ de intervalos semiabertos disjuntos.
 
-	Para a primeira condição, note que se $(a,b] = \bigsqcup_{i=1}^N
+	Definimos $\mu: \mathcal{G} \to \R$ dada por $\mu((a,b]) = F(b) -
+	F(a)$ para um único intervalo e
+	$\mu(\bigsqcup_{i=1}^{N} (a_i,b_i]) = \sum_{i = 1}^{N} \mu((a,b])$
+	para uma união disjunta. Vamos verificar que
+	essa definição de fato faz sentido quando escrevemos nossos
+	conjuntos de maneiras distintas.
+	% [\ref{trm:caratheodory_extension}].
+
+	(Escrevendo um intervalo como união disjunta) Note que se $(a,b] =
+	\bigsqcup_{i=1}^N
 	(a_i,b_i]$ então devemos ter $a_1 = a$, $b_N = b$ e
 	$b_i = a_{i+1}$ para todo $1 \leq i \leq N-1$ . Portanto,
 	\[
 		\mu((a,b]) = F(b) - F(a) = \sum_{i = 1}^{N} F(b_i) - F(a_i) =
 		\sum_{i=1}^{N} \mu((a_i,b_i])
 	\]
-	(Aqui fazemos o abuso notacional que $F(-\infty) = 0$ e $F(\infty) = 1$).
+	e portanto a definição faz sentido (fazemos o abuso notacional
+	$F(-\infty) = 0$ e $F(\infty) = 1$).
+
+	(Escrevendo uniões de forma distinta) Seja $A = \bigsqcup_{i=1}^{N}
+	(a_i,b_i] = \bigsqcup_{i=1}^{M} (c_i, d_i]$ e
+	qualquer um deles for igual a um intervalo semi-aberto, já provamos
+	o resultado. Então vamos se
 
 	Para a segunda condição, precisaremos da hipótese de continuidade a
 	direita. Inicialmente, seja $S = (a,b]$ com $-\infty < a \leq b < \infty$
