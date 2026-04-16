@@ -18,7 +18,8 @@
 		A_{n,m} = B(g_{n/2}, n/2 + 1/m) = \{f \in C([0,1]) : ||f -
 		n/2||_\infty < n/2 + 1/m\}
 	\]
-	onde $g_{n/2}(t) = n/2$ para todo $t$. Notamos, já que toda $f \in C([0,1])$ é limitada, que
+	onde $g_{n/2}(t) = n/2$ para todo $t$. Notamos, já que toda $f \in
+	C([0,1])$ é limitada, que
 	\[
 		B_m = \bigcup_{n \geq 1} A_{n,m} = \{f \in C([0,1]) : f > -1/m\}
 		\in \mathcal{F}
@@ -290,11 +291,13 @@ seguir a prova do Durret.
 	se escreve como $\bigsqcup_{i = 1}^n (a_i,b_i]$ para alguma
 	sequência $(a_i,b_i]$ de intervalos semiabertos disjuntos.
 
-	Definimos $\mu: \mathcal{G} \to \R^+$ dada por 
+	Definimos $\mu: \mathcal{G} \to \R^+$ dada por
 	\[
-		\mu(S) = \begin{cases}
+		\mu(S) =
+		\begin{cases}
 			F(b) - F(a) & \text{ se } S = (a,b]\\
-			\sum_{i = 1}^{N} F(b_i) - F(a_i) & \text{ se } S = \bigsqcup_{i=1}^{N} (a_i,b_i]
+			\sum_{i = 1}^{N} F(b_i) - F(a_i) & \text{ se } S =
+			\bigsqcup_{i=1}^{N} (a_i,b_i]
 		\end{cases}
 	\]
 	Vamos verificar que essa definição de fato faz sentido quando escrevemos nossos
@@ -306,7 +309,8 @@ seguir a prova do Durret.
 	(a_i,b_i]$ então devemos ter $a_1 = a$, $b_N = b$ e
 	$b_i = a_{i+1}$ para todo $1 \leq i \leq N-1$ . Portanto,
 	\[
-		\mu((a,b]) = F(b) - F(a) = \sum_{i = 1}^{N} F(b_i) - F(a_i) = \mu(\bigsqcup_{i=1}^{N} (a_i,b_i])
+		\mu((a,b]) = F(b) - F(a) = \sum_{i = 1}^{N} F(b_i) - F(a_i) =
+		\mu(\bigsqcup_{i=1}^{N} (a_i,b_i])
 	\]
 	e portanto a definição faz sentido (fazemos o abuso notacional
 	$F(-\infty) = 0$ e $F(\infty) = 1$).
@@ -314,37 +318,50 @@ seguir a prova do Durret.
 	(Escrevendo uniões de forma distinta) Seja $A = \bigsqcup_{i=1}^{N}
 	(a_i,b_i]$. Se $A$ é da forma $(a,b]$ já provamos
 	o resultado. Então vamos supor (tomando intervalos maximais)
-	que $A$ é da forma $\bigsqcup_{j = 1}^M (x_j, y_j]$ onde cada $(x_j,y_j]$ é uma componente conexa de $A$.
-	Segue que para cada $i \in [N]$, existe um único $j \in [M]$ tal que $(a_i,b_i] \subseteq (x_j,y_j]$ e
-	além do mais, sendo $I(j) := \{i \in [N] : (a_i,b_i] \subset (x_j,y_j]\}$, vale que
+	que $A$ é da forma $\bigsqcup_{j = 1}^M (x_j, y_j]$ onde cada $(x_j,
+	y_j]$ é uma componente conexa de $A$.
+	Segue que para cada $i \in [N]$, existe um único $j \in [M]$ tal que
+	$(a_i,b_i] \subseteq (x_j,y_j]$ e
+	além do mais, sendo $I(j) := \{i \in [N] : (a_i,b_i] \subset (x_j,
+	y_j]\}$, vale que
 	\[
-	(x_j,y_j] = \bigsqcup_{i\in I(j)} (a_i,b_i].
+		(x_j,y_j] = \bigsqcup_{i\in I(j)} (a_i,b_i].
 	\]
 	Temos então, pelo resultado anterior,
 	\[
-		\mu(\bigsqcup_{j = 1}^M (x_j, y_j]) = \sum_{j = 1}^{M} F(y_j) - F(x_j) = 
-		\sum_{j=1}^{M} \sum_{i \in I(j)} F(b_i) - F(a_i) = \sum_{i = 1}^N \mu((a_i,b_i]) = \mu(\bigsqcup_{i=1}^N (a_i,b_i])
+		\mu(\bigsqcup_{j = 1}^M (x_j, y_j]) = \sum_{j = 1}^{M} F(y_j) - F(x_j) =
+		\sum_{j=1}^{M} \sum_{i \in I(j)} F(b_i) - F(a_i) = \sum_{i = 1}^N
+		\mu((a_i,b_i]) = \mu(\bigsqcup_{i=1}^N (a_i,b_i])
 	\]
 	como queríamos mostrar. Ou seja a definição faz sentido.
 
-	Vamos ver que $\mu$ satisfaz as condições de Caratheodory [\ref{trm:caratheodory_extension}]. Como toda união 
-	finita de elemento de $\mathcal{G}$ é uma união finita de intervalos semiabertos, já verificamos a igualdade para 
-	uniões disjuntas finitas. Basta então considerar uniões infinitas enumeráveis $S = \bigsqcup_{i \geq 1} A_i \in \mathcal{G}$,
+	Vamos ver que $\mu$ satisfaz as condições de Caratheodory
+	[\ref{trm:caratheodory_extension}]. Como toda união
+	finita de elemento de $\mathcal{G}$ é uma união finita de intervalos
+	semiabertos, já verificamos a igualdade para
+	uniões disjuntas finitas. Basta então considerar uniões infinitas
+	enumeráveis $S = \bigsqcup_{i \geq 1} A_i \in \mathcal{G}$,
 	que, reindexando e abrindo os $A_i$'s, podem ser escrito da forma:
 	\[
-	S = \bigsqcup_{i = 1}^\infty A_i = \bigsqcup_{i = 1}^{\infty} \bigsqcup_{j = 1}^{n_i} (a_{i,j},b_{i,j}]
-	= \bigsqcup_{k = 1}^{\infty} (a_k, b_k].
+		S = \bigsqcup_{i = 1}^\infty A_i = \bigsqcup_{i = 1}^{\infty}
+		\bigsqcup_{j = 1}^{n_i} (a_{i,j},b_{i,j}]
+		= \bigsqcup_{k = 1}^{\infty} (a_k, b_k].
 	\]
-	Precisamos que $\mu(S) = \sum_{k = 1}^{\infty} F(b_k) - F(a_k)$. Primeiramente, fica claro que 
-	$\mu(S) \geq \sum_{k = 1}^{\infty} F(b_k) - F(a_k)$ pois, para todo $N$, temos 
+	Precisamos que $\mu(S) = \sum_{k = 1}^{\infty} F(b_k) - F(a_k)$.
+	Primeiramente, fica claro que
+	$\mu(S) \geq \sum_{k = 1}^{\infty} F(b_k) - F(a_k)$ pois, para todo $N$, temos
 	\begin{align*}
-		\mu(S) &= \mu\bigg(\bigsqcup_{k = 1}^{N}(a_k, b_k] \sqcup \bigg(S \setminus \bigsqcup_{i = 1}^{N} (a_k, b_k] \bigg) \bigg)\\
-		&= \sum_{k = 1}^N F(b_k) - F(a_k) + \mu\bigg(S \setminus \bigsqcup_{i = 1}^{N} (a_k, b_k]\bigg)\\
+		\mu(S) &= \mu\bigg(\bigsqcup_{k = 1}^{N}(a_k, b_k] \sqcup \bigg(S
+		\setminus \bigsqcup_{i = 1}^{N} (a_k, b_k] \bigg) \bigg)\\
+		&= \sum_{k = 1}^N F(b_k) - F(a_k) + \mu\bigg(S \setminus
+		\bigsqcup_{i = 1}^{N} (a_k, b_k]\bigg)\\
 		&\geq \sum_{k = 1}^N F(b_k) - F(a_k).
 	\end{align*}
-	
-	Falta a outra desigualdade $\mu(S) \leq \sum_{k = 1}^{\infty} F(b_k) - F(a_k)$. Recorreremos
-	da hipótese de continuidade a direita. Inicialmente, seja $S = (a,b]$ com $-\infty < a \leq b < \infty$
+
+	Falta a outra desigualdade $\mu(S) \leq \sum_{k = 1}^{\infty} F(b_k)
+	- F(a_k)$. Recorreremos
+	da hipótese de continuidade a direita. Inicialmente, seja $S = (a,
+	b]$ com $-\infty < a \leq b < \infty$
 	e suponha novamente $S = \bigsqcup_{i=1}^{\infty} (a_i,b_i]$. Dado $\eps > 0$
 	arbitrário, vamos mostrar que
 	\[
@@ -392,16 +409,20 @@ seguir a prova do Durret.
 	$\mu((A,B]) \leq \sum_{i = 1}^{\infty} \mu((a_i,b_i])$. Fazendo $A$
 	ou $B$ tender para $-\infty$ ou $+\infty$ nos dá o resultado geral.
 
-	Se $S$ é da forma $S = \bigsqcup_{j = 1}^{M} (x_j,y_j] = \bigsqcup_{i = 1}^{\infty} (a_i, b_i]$,
-	segue, do mesmo argumento de antes, que chamando $I(j) := \{i \in \N : (a_i,b_i]  \subset (x_j, y_j] \}$
-	(esses agora podem ser infinitos), achamos 
+	Se $S$ é da forma $S = \bigsqcup_{j = 1}^{M} (x_j,y_j] =
+	\bigsqcup_{i = 1}^{\infty} (a_i, b_i]$,
+	segue, do mesmo argumento de antes, que chamando $I(j) := \{i \in \N
+	: (a_i,b_i]  \subset (x_j, y_j] \}$
+	(esses agora podem ser infinitos), achamos
 	\[
-		\mu(S) = \mu(\bigsqcup_{j = 1}^{M} (x_j, y_j]) = \sum_{j = 1}^M \sum_{i \in I(j)} \mu((a_i,b_i])
+		\mu(S) = \mu(\bigsqcup_{j = 1}^{M} (x_j, y_j]) = \sum_{j = 1}^M
+		\sum_{i \in I(j)} \mu((a_i,b_i])
 		= \sum_{i = 1}^{\infty} F(b_i) - F(a_i).
 	\]
 
 	Por Caratheodory [\ref{trm:caratheodory_extension}], temos uma
-	medida na $\sigma$-álgebra gerada pelo semi-abertos, que é $\mathcal{B}(\R)$. Como a álgebra 
+	medida na $\sigma$-álgebra gerada pelo semi-abertos, que é
+	$\mathcal{B}(\R)$. Como a álgebra
 	dos semiabertos é um $\pi$-sistema, essa medida é única pelo teorema de Dynkin.
 \end{proof}
 
