@@ -16,7 +16,7 @@
 	Dados $n,m \geq 1$ inteiros, considere as bolas abertas
 	\[
 		A_{n,m} = B(g_{n/2}, n/2 + 1/m) = \{f \in C([0,1]) : ||f -
-		n/2||_\infty < n/2 + 1/m\}
+		g_{n/2}||_\infty < n/2 + 1/m\}
 	\]
 	onde $g_{n/2}(t) = n/2$ para todo $t$. Notamos, já que toda $f \in
 	C([0,1])$ é limitada, que
@@ -24,7 +24,7 @@
 		B_m = \bigcup_{n \geq 1} A_{n,m} = \{f \in C([0,1]) : f > -1/m\}
 		\in \mathcal{F}
 	\]
-	e portanto $\{f \in C([0,1]) : f \geq 0\} = \bigcap_{m\geq 1} B_m
+	portanto $\{f \in C([0,1]) : f \geq 0\} = \bigcap_{m\geq 1} B_m
 	\in \mathcal{F}$.
 \end{proof}
 
@@ -66,14 +66,17 @@
 	\Pr'(C)$. Segue, pelo teorema de Dynkin, que para qualquer
 	$C \in \sigma(\{A_i\})$, temos $\Pr(C) = \Pr'(C)$.
 
-	Vamos mostrar que $P(\Omega) \subset \sigma(\{A_i\})$ e concluir a
+	Vamos mostrar que $\mathcal{P}(\Omega) \subset \sigma(\{A_i\})$ e concluir a
 	prova. Dado qualquer elemento $w \in \Omega$,
 	seja $I(w) = \{i \in [n] : w(i) = 1\}$, temos
 	\[
 		\{w\} = \bigcap_{i \in I(w)} A_i \cap \bigcap_{j \not \in I(w)}
 		A_j^c \quad \in\quad  \sigma(\{A_i\}).
 	\]
-	Como $\Omega$ é finito, segue que $P(\Omega) \subset \sigma(\{A_i\})$.
+	Como $\Omega$ é finito, dado qualquer $H \in \mathcal{P}(\Omega)$ temos
+	\[
+		H = \bigcup_{w \in H} \{w\} \in \sigma(\{A_i\})
+	\] pois $H$ é finito. Logo $\mathcal{P}(\Omega) \subset \sigma(\{A_i\})$.
 \end{proof}
 
 \begin{exercise}
@@ -121,10 +124,12 @@
 	logo $\sigma(X)$ é coleção desses conjuntos onde $A \in
 	\mathcal{B}(\R)$. Ela não é $\mathcal{B}(\R^2)$,
 	pois para todo conjunto não vazio $X^{-1}(A) \in \sigma(X)$, temos
-	que $A$ não é vazio e portanto a
-	semi-reta $\{(a, t): t \leq a\}$ pertence a $X^{-1}(A)$. Como é
-	claramente falso que todo conjunto de $\mathcal{B}(\R^2)$
-	possui uma semireta infinita, segue que $\sigma(X) \neq \mathcal{B}(\R^2)$.
+	$A\neq \varnothing$
+	e portanto, tomando $a \in A$, as semi-retas $\{(a, t) \in \R^2: t
+	\leq a\}$ e $\{(t, a) \in \R^2: t \leq a\}$  estão contidas em
+	$X^{-1}(A)$. Como é
+	claramente falso que todo conjunto não vazio de $\mathcal{B}(\R^2)$
+	contém uma semireta infinita, segue que $\sigma(X) \neq \mathcal{B}(\R^2)$.
 \end{proof}
 
 \begin{exercise}
@@ -175,20 +180,23 @@
 \end{exercise}
 
 \begin{proof}
-	Vamos provar a invariância por rotaçao. Dado $E \subset S^1$
+	Vamos provar a invariância por rotação. Dado $E \subset S^1$
 	mensurável e $e^{2\pi i\theta} \in S^1$, queremos
 	que $X_*\Pr(E) = X_*\Pr(e^{2\pi i \theta}E)$. Sejam
 	\[
 		A = \{t \in [0,1]: e^{2\pi i t} \in E\} \quad \text{ e } \quad B =
-		\{t \in [0,1]: e^{2\pi i t} \in e^{2\pi i \theta}E\},
+		\{t \in [0,1]: e^{2\pi i t} \in e^{2\pi i \theta}E\} = \{t \in [0,
+		1] : e^{2\pi i (t - \theta)} \in E\},
 	\]
 	basta ter que $m(A) = m(B)$. Usando $\{a\}_\text{frac}$ para denotar
 	a parte fracionária do real $a$, note que (trocando $t - \theta$ por $u$),
 	\[
-		B = \{t \in [0,1] : e^{2\pi i (t - \theta)} \in E\} = \{ \{u +
-		\theta\}_\text{frac} : e^{2\pi i u} \in E\}
+		B  = \{ \{u +
+		\theta\}_\text{frac} : e^{2\pi i u} \in E\}.
 	\]
-	mas então $m(B) = m(\{A + \theta\}_\text{frac})$ e pela invariância
+	(Aqui potencialmente perdemos $1 \in B$, como tem medida de Lebesgue
+	0 não faz diferença).
+	Mas então $m(B) = m(\{A + \theta\}_\text{frac})$ e pela invariância
 	por translação da medida de Lebesgue $m(\cdot)$,
 	segue que $m(B) = m(A)$. Mais concretamente,
 	\begin{align*}
