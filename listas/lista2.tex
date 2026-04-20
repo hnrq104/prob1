@@ -1,0 +1,104 @@
+\section{Lista 2 (20/04/2026)}
+
+\subsection{Exercícios obrigatórios}
+\begin{exercise}
+	(1) Construa varíaveis aleatórias $X_1, \dots X_n$ tal que para todo
+	$S \subsetneq [n]$,
+	temos que $(X_i)_{i \in S}$ são independentes mas $X_1, \dots X_n$
+	não são independentes.
+\end{exercise}
+
+Eu conheço um exemplo famoso relativamente simples. Seja
+\[
+	A = \{(v_1, \dots, v_n) \in \{0,1\}^n : \sum_{i = 1}^n v_i \equiv 0 \pmod 2\}
+\]
+e seja $(X_1, \dots, X_n)$ tomado uniformemente sobre $A$. Vamos ver
+que $(X_i)$ satisfaz as condições do problema. Precisamos de um lema fácil.
+\begin{lemma}
+	Dado $n > 0 \in \Z$ e $c \in \{0,1\}$, seja
+	\[ A = \{(v_1, \dots, v_n) \in \{0,1\}^n : \sum_{i = 1}^n v_i \equiv
+	c \pmod 2\}\]
+	então $|A| = 2^{n-1}$.
+\end{lemma}
+
+\begin{proof}
+	Há formas diversas de fazer isso, por indução parece ser mais fácil.
+	Claramente é verdade para $n = 1$.
+	Suponha que vale para $n > 1$, para $n+1$ temos
+	\begin{align*}
+		|A| &= |A\cap\{v_{n+1} = 0\}| + |A \cap \{v_{n+1}=1\}|\\
+		&= |\{(v_1,\dots,v_n) \in \{0,1\}^n : \sum_{i=0}^{n} v_i = c \pmod 2\}|\\
+		&+ |\{(v_1,\dots,v_n) \in \{0,1\}^n : \sum_{i=0}^{n} v_i = c - 1 \pmod 2\}|\\
+		&= 2^{n-1} + 2^{n-1} = 2^{n}
+	\end{align*}
+	como queríamos mostrar.
+\end{proof}
+
+\begin{proof}
+	(do exercício) Seja $A$ dado por
+	\[
+		A = \{(v_1, \dots, v_n) \in \{0,1\}^n : \sum_{i = 1}^n v_i \equiv 0 \pmod 2\},
+	\]
+	já sabemos que $|A| = 2^{n-1}$, tome $(X_1, \dots, X_n)$ um vetor
+	uniformemente em $A$.
+	Vamos verificar que para todo $S \subsetneq [n]$, $(X_i)_{i \in S}$
+	são independentes.
+	Temos para toda sequência $(a_i)_{i \in S}$ de elementos $a_i \in \{0,1\}$ que
+	\[
+		\Pr(\forall i \in S,  X_i = c_i) = \frac{|\{\vec{v} \in \{0,
+				1\}^{n-|S|}: \sum_{i=1}^{n-|S|} v_i \equiv c - \sum_{i \in S}
+		a_i\}|}{2^{n-1}} = 2^{-|S|}
+	\]
+	pelo lema anterior. E, portanto, usando o lema novamente,
+	\[
+		\Pr(\forall i \in S,  X_i = c_i) = \prod_{i \in S}^{}\Pr(X_i = c_i) = 2^{-|S|}
+	\]
+	logo $(X_i)_{i \in S}$ são independentes (para ser preciso eu
+		deveria considerar $\Pr(X_i \in B_i)$ onde $B_i \subset \{0,1\}$,
+		mas é fácil ver que a equação anterior implica as igualdades dessa
+	forma). No entanto, crucialmente,
+	\[
+		\Pr(X_n = 0 \; |\; X_1 = 0, X_2 = 0, \dots, X_{n-1} = 0) = 1 \neq
+		\frac{1}{2} = \Pr(X_n = 0).
+	\]
+\end{proof}
+
+\begin{exercise}
+	(3) Prove que
+	\begin{enumerate}[label=(\alph*)]
+		\item Para toda medida de probabilidade $mu_X$ em $(\R,
+			\mathcal{B}(\R))$, $\mu_X(A) \in \{0,1\}$ para
+			todo $A \in \mathcal{B}(\R)$ se e só se $\mu_X = \delta_p$ para
+			algum $p \in \R$.
+		\item Se $X$ é uma variável aleatória independente de si mesma,
+			então $X = c$ quase certamente para $c \in \R$.
+		\item Se $X$ é $c \in \R$ quase certamente, então $X$ é
+			independente de qualquer outra varíavel aletória.
+		\item Sejam $X$ e $Y$ independentes. Dê uma condição necessária e
+			suficiente para $\Pr(X = Y) > 0$.
+		\item Se $X$ e $Y$ são independentes tais que $X + Y = c$ quase
+			certamente para algum $c \in \R$
+			então $X = c_1$ e $Y = c_2$ quase certamente onde $c_1 + c_2 = c$.
+		\item Prove que se $X$ e $Y$ são variáveis aleatórias independentes
+			sem átomos, então $X + Y$ também não tem átomos.
+	\end{enumerate}
+\end{exercise}
+
+\subsection{Outros exercícios}
+
+\begin{exercise}
+	(2) Seja $X = (X_1, \dots, X_d)$ um vetor gaussiano, i.e. $X$ tem densidade
+	\[
+		p_X(x) = (2\pi)^{d/2}|\det(K)|^{-1/2}\exp\bigg(\frac{- (x - \mu)^T
+		K^{-1} (x - \mu)}{2}\bigg)
+	\]
+	onde $\mu \in \R^d$ e $K$ é uma matriz positiva definida. Mostre que
+	$(X_1, \dots X_d)$ são independentes
+	se e somente se $\text{Cov}(X_i, X_j) = 0$ para todo $i \neq j$.
+\end{exercise}
+\begin{proof}
+	Na verdade, vale que $K$ é a matriz de covariância das coordenadas.
+	(Esse é meio chato de fazer a conta).
+\end{proof}
+
+\pagebreak
