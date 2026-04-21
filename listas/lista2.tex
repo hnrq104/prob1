@@ -66,8 +66,8 @@ que $(X_i)$ satisfaz as condições do problema. Precisamos de um lema fácil.
 \begin{exercise}
 	(3) Prove que
 	\begin{enumerate}[label=(\alph*)]
-		\item Para toda medida de probabilidade $mu_X$ em $(\R,
-			\mathcal{B}(\R))$, $\mu_X(A) \in \{0,1\}$ para
+		\item Para toda medida de probabilidade $\mu_X$ em $(\R,
+			\mathcal{B}(\R))$ vale que $\mu_X(A) \in \{0,1\}$ para
 			todo $A \in \mathcal{B}(\R)$ se e só se $\mu_X = \delta_p$ para
 			algum $p \in \R$.
 		\item Se $X$ é uma variável aleatória independente de si mesma,
@@ -82,6 +82,105 @@ que $(X_i)$ satisfaz as condições do problema. Precisamos de um lema fácil.
 		\item Prove que se $X$ e $Y$ são variáveis aleatórias independentes
 			sem átomos, então $X + Y$ também não tem átomos.
 	\end{enumerate}
+\end{exercise}
+
+Seguem as soluções.
+\begin{enumerate}[label=(\alph*)]
+	\item
+		\begin{proof}
+			A recíproca é óbvia, se $\mu = \delta_p$ então $\mu(A) = \id[p \in
+			A]$. Para a ida, vamos encontrar
+			um ponto com toda a massa. Note que se $A,B$ são disjuntos, não
+			pode ser que $\mu(A) = \mu(B) = 1$.
+			Portanto, para cada $n \in \N$, seja
+			\[
+				\R = \bigsqcup_{i \in \Z} \bigg[\frac{i}{2^n}, \frac{i+1}{2^n}\bigg)
+			\]
+			pela observação anterior, para cada $n$, existe somente um
+			intervalo $A_n = [i/2_n, (i+1)/2^n)$
+			com $\mu(A_n) = 1$. Claramente esses intervalos $A_n$ são
+			encaixados e se intersectam em um ponto $p$.
+			Vale que $\mu(\{p\}) = \lim_{n\to\infty} \mu(A_n) = 1$.
+		\end{proof}
+
+	\item
+		\begin{proof}
+			Para todo $A \in \mathcal{B}(\R)$, vale que
+			\[
+				\Pr(X \in A) = \Pr((X,X) \in A \times A) = \Pr(X \in A)^2,
+			\]
+			logo $\Pr(X \in A) = \{0,1\}$. Pela letra anterior,
+			a medida associada a $X$ em $(\R, \mathcal{B}(\R))$ é uma $\delta$.
+			Logo $X = c$ quase certamente
+			para algum $c$.
+		\end{proof}
+
+	\item
+		\begin{proof}
+			Seja $X: \Omega \to \R$ quase certamente igual a $c \in \R$ e $Y:
+			\Omega \to \R$ variável aleatória qualquer.
+			Temos para $A \times B \in \mathcal{B}(\R)^2$ que
+			\[
+				\Pr((X,Y) \in A \times B) = \Pr(X^{-1}(A) \cap Y^{-1}(B)) = \id[c
+				\in A] \cdot \Pr(Y^{-1}(B)) = \Pr(X \in A) \Pr(Y \in B)
+			\]
+			onde na segunda igualdade usamos que se $\mu(C) \in \{0,1\}$,
+			então $\mu(C \cap D) = \mu(C)\mu(D)$. Segue
+			que $(X,Y)$ são independentes na álgebra dos retângulos,
+			aproximando indicadoras por retângulos ou usando Dynkin, segue o resultado.
+		\end{proof}
+
+	\item
+		\begin{proof}
+			Basta que exista $p \in \R$ com $\Pr(X = p) > 0$ e $\Pr(Y = p) >
+			0$. Naturalmente,
+			se tal $p$ existe então,
+			\[
+				\Pr(X = Y) \geq \Pr(X = Y = p) = \Pr(X=p) \Pr(Y = p) > 0.
+			\]
+			Se não existe tal $p$, então $X$ não possui átomos átomos em comum com $Y$.
+			Sejam $(x_i)_{i \in B}$ os átomos de $X$ e $(y_i)_{i \in C}$ os
+			átomos de $Y$ (sabemos que átomos sempre são enumeráveis).
+			Logo, como $X,Y$ são independentes,
+			\[
+				\Pr(X = Y) = \int_{\R}\int_{\R} \id[x = y] p_X(x) p_Y(y) =
+				\int_{\R} \Pr(X = y) p_Y(y)
+			\]
+			temos ainda
+			\begin{align*}
+				\int_{\R} \Pr(X = y) p_Y(y) &= \int_{s \not \in (y_i)_{i \in C}}
+				\Pr(X = s) p_Y(s) + \sum_{i \in C} \Pr(X = y_i)\Pr(Y = y_i)\\
+				&=\int_{s \not \in (y_i)_{i \in B}} \sum_{j \in B}\Pr(X =
+				x_j)\id[s = x_j] p_Y(s) + \sum_{i \in C} \Pr(X = y_i)\Pr(Y = y_i)\\
+				&=\sum_{j \in B} \Pr(X = x_j)\Pr(Y = x_j) + \sum_{i \in C} \Pr(X
+				= y_i)\Pr(Y = y_i)\\
+				&= 0
+			\end{align*}
+
+		\end{proof}
+
+	\item
+		\begin{proof}
+			Se $X+Y = c$ q.c , então $X = c - Y$ q.c. Como $X$ é independente de $Y$,
+			$X$ é independente de $X$, portanto, por (b), $X = c_1$ para algum
+			$c_1 \in \R$ q.c.
+			Por fim, temos $Y = c - c_1$ q.c.
+		\end{proof}
+
+	\item
+		\begin{proof}
+			Sendo $X,Y$ independentes, temos a distribuição produto e portanto,
+			dado $c \in \R$,
+			\[
+				\Pr(X + Y = c) = \int_{\R}\int_\R \id[x + y = c] p_X(x)p_Y(y) =
+				\int_{\R} \Pr(X = c - y) p_Y(y) = 0
+			\]
+			na verdade mostramos algo mais forte. Basta que $X$ não tenha átomos.
+		\end{proof}
+\end{enumerate}
+
+\begin{exercise}
+
 \end{exercise}
 
 \subsection{Outros exercícios}
