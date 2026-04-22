@@ -181,90 +181,111 @@ Seguem as soluções.
 \end{enumerate}
 
 \begin{exercise}
-Sejam $X_i \equiv \text{Exp}(1)$ i.i.d.
-\begin{enumerate}[label=(\alph*)]
-	\item Prove que a.s 
-	\[ \limsup_n \frac{X_n}{\log n} = 1.\]
-	\item Seja $M_n = \max_{i \in [n]} X_i$. Prove que a.s 
-	\[ \liminf_n \frac{M_n}{\log n} \geq 1.\]
-	\item Prove que a.s. existe uma subsequência $n_k$ tal que 
-	\[ \limsup_k \frac{M_{n_k}}{\log n_k} \leq 1.\]
-	\item Mostre que a.s.
-	\[
-		\lim_n \frac{M_n}{\log n} = 1.
-	\]
-\end{enumerate}
+	Sejam $X_i \equiv \text{Exp}(1)$ i.i.d.
+	\begin{enumerate}[label=(\alph*)]
+		\item Prove que a.s
+			\[ \limsup_n \frac{X_n}{\log n} = 1.\]
+		\item Seja $M_n = \max_{i \in [n]} X_i$. Prove que a.s
+			\[ \liminf_n \frac{M_n}{\log n} \geq 1.\]
+		\item Prove que a.s. existe uma subsequência $n_k$ tal que
+			\[ \limsup_k \frac{M_{n_k}}{\log n_k} \leq 1.\]
+		\item Mostre que a.s.
+			\[
+				\lim_n \frac{M_n}{\log n} = 1.
+			\]
+	\end{enumerate}
 
-Para esse exercício, enunciarei os lemas de Borel-Cantelli provados em aula.
-\begin{lemma}
-	\label{lemma:borel_cantelli_1}
-	Sejam $(E_n)_{n \in \N}$ eventos em um espaço de probabilidade $(\Omega, \Sigma)$. Se 
-	\[
-		\sum_{n \geq 1} \Pr(E_n) < \infty,
-	\]
-	então quase certamente somente finitos deles acontecem.
-\end{lemma}
+	Para esse exercício, enunciarei os lemas de Borel-Cantelli provados em aula.
+	\begin{lemma}
+		\label{lemma:borel_cantelli_1}
+		Sejam $(E_n)_{n \in \N}$ eventos em um espaço de probabilidade
+		$(\Omega, \Sigma)$. Se
+		\[
+			\sum_{n \geq 1} \Pr(E_n) < \infty,
+		\]
+		então quase certamente somente finitos deles acontecem.
+	\end{lemma}
 
-\begin{lemma}
-	\label{lemma:borel_cantelli_2}
-	Sejam $(E_n)_{n \in \N}$ eventos independentes espaço de probabilidade $(\Omega, \Sigma)$. Se 
-	\[
-		\sum_{n \geq 1} \Pr(E_n) = \infty,
-	\]
-	então quase certamente infinitos deles acontecem.
-\end{lemma}
+	\begin{lemma}
+		\label{lemma:borel_cantelli_2}
+		Sejam $(E_n)_{n \in \N}$ eventos independentes espaço de
+		probabilidade $(\Omega, \Sigma)$. Se
+		\[
+			\sum_{n \geq 1} \Pr(E_n) = \infty,
+		\]
+		então quase certamente infinitos deles acontecem.
+	\end{lemma}
 
+	\begin{enumerate}[label=(\alph*)]
+		\item
+			\begin{proof}
+				Seja $\alpha > 1$ e $E_n = \{X_n/\log n > \alpha\}$. Vamos
+				mostrar que a.s somente finitos $E_n$ ocorrem. Note que
+				\[
+					\sum_{n \geq 1} \Pr\bigg(\frac{X_n}{\log n} > \alpha\bigg) =
+					\sum_{n \geq 1} \Pr(\text{Exp}(1) > \alpha \log n)
+					= \sum_{n \geq 1} n^{-\alpha} < \infty
+				\]
+				pelo fato da última série ser convergente. Segue pelo lema
+				[\ref{lemma:borel_cantelli_1}] que se $m \in \N$ e
+				$A_m$ é o evento
+				\[A_m := \bigg\{\frac{X_n}{\log n} > 1 + \frac{1}{m} \quad
+					\text{finitas vezes}\bigg\}
+				= \bigg\{\limsup_n \frac{X_n}{\log n} \leq 1 + \frac{1}{m}\bigg\}\]
+				então $\Pr(A_m) = 1$. Temos por fim, $\Pr(\limsup_n X_n/\log(n)
+				\leq 1) = \Pr(\bigcap_{m \in \N} A_m) = 1$.
 
+				Falta a outra desigualdade, seja $\alpha < 1$ e defina os $E_n$
+				igualmente. Note que os $E_n$ são independentes e
+				crucialmente
+				\[
+					\sum_{n \geq 1} \Pr(E_n) = \sum_{n \geq 1} \Pr(\text{Exp}(1) >
+					\alpha \log n) = \sum_{n \geq 1} n^{-\alpha} = \infty.
+				\]
+				Pelo lema [\ref{lemma:borel_cantelli_2}], para todo $\alpha < 1$,
+				os $E_n$ acontecem infinitas vezes com probabilidade $1$.
+				Ou seja, definindo
+				\[
+					B_m :=  \bigg\{\limsup_n \frac{X_n}{\log n} \geq 1 - \frac{1}{m}\bigg\}
+				\]
+				segue que $\Pr(B_m) = 1$ e portanto $\Pr(\limsup_n X_n/\log n
+				\geq 1) = \Pr(\bigcap_{m \in \N} B_m) = 1$. Juntando as duas
+				afirmações, segue que $\Pr(\limsup_n X_n/\log n = 1) = 1$.
+			\end{proof}	
 
-\begin{enumerate}[label=(\alph*)]
-\item \begin{proof}
-	Seja $\alpha > 1$ e $E_n = \{X_n/\log n > \alpha\}$. Vamos mostrar que a.s somente finitos $E_n$ ocorrem. Note que
-	\[
-		\sum_{n \geq 1} \Pr\bigg(\frac{X_n}{\log n} > \alpha\bigg) = \sum_{n \geq 1} \Pr(\text{Exp}(1) > \alpha \log n)
-		= \sum_{n \geq 1} n^{-\alpha} < \infty
-	\]
-	pelo fato da última série ser convergente. Segue pelo lema [\ref{lemma:borel_cantelli_1}] que se $m \in \N$ e
-	$A_m$ é o evento 
-	\[A_m := \bigg\{\frac{X_n}{\log n} > 1 + \frac{1}{m} \quad \text{finitas vezes}\bigg\} 
-	= \bigg\{\limsup_n \frac{X_n}{\log n} \leq 1 + \frac{1}{m}\bigg\}\]
-	então $\Pr(A_m) = 1$. Temos por fim, $\Pr(\limsup_n X_n/\log(n) \leq 1) = \Pr(\bigcap_{m \in \N} A_m) = 1$.
+		\item
+			\begin{proof}
+				Seja $\alpha < 1$, vamos provar que $\Pr(\liminf_n M_n/\log n
+				\geq \alpha) = 1$. Basta ver que a.s.
+				somente para finitos termos vale que $M_n/\log n < \alpha$. Temos
+				\[	
+					\sum_{n \geq 1} \Pr(M_n /\log n < \alpha) = \sum_{n \geq 1}
+					\Pr(\max_{i \in [n]} X_i \leq \alpha\log n) = \sum_{n \geq 1}
+					\Pr( \bigcap_{i \in [n]} \{X_i \leq \alpha \log n\})
+				\]
+				segue por independência
+				\[
+					\sum_{n \geq 1} \Pr( \bigcap_{i \in [n]} \{X_i \leq \alpha \log
+					n\}) = \sum_{n \geq 1} (1 - n^{-\alpha})^n \leq \sum_{n \geq 1}
+					\exp(-n^{1 - \alpha}).
+				\]
+			\end{proof}
+			Se $\alpha < 1$ essa série converge super rapidamente, já que
+			$n^{1 - \alpha} \gg 2\log n$ e portanto existe $n_0$ tal que
+			\[
+				\sum_{n \geq n_0} \exp(-n^{1 - \alpha}) \leq \sum_{n \geq n_0}
+				\exp(- 2\log n) = \sum_{n \geq n_0} \frac{1}{n^2} < \infty.
+			\]
+			Segue por Borel Cantelli [\ref{lemma:borel_cantelli_1}] que para
+			todo tal $\alpha$, a.s. $Mn/ \log n < \alpha$ somente finitas vezes.
+			Fazendo o mesmo argumento que antes (tomando interseção sobre uma
+			sequência enumerável), temos $\Pr(\liminf M_n / \log n \geq 1) = 1$.
 
-	Falta a outra desigualdade, seja $\alpha < 1$ e defina os $E_n$ igualmente. Note que os $E_n$ são independentes e 
-	crucialmente
-	\[
-		\sum_{n \geq 1} \Pr(E_n) = \sum_{n \geq 1} \Pr(\text{Exp}(1) > \alpha \log n) = \sum_{n \geq 1} n^{-\alpha} = \infty.
-	\]
-	Pelo lema [\ref{lemma:borel_cantelli_2}], para todo $\alpha < 1$, os $E_n$ acontecem infinitas vezes com probabilidade $1$.
-	Ou seja, definindo
-	\[
-		B_m :=  \bigg\{\limsup_n \frac{X_n}{\log n} \geq 1 - \frac{1}{m}\bigg\}
-	\]
-	segue que $\Pr(B_m) = 1$ e portanto $\Pr(\limsup_n X_n/\log n \geq 1) = \Pr(\bigcap_{m \in \N} B_m) = 1$. Juntando as duas 
-	afirmações, segue que $\Pr(\limsup_n X_n/\log n = 1) = 1$.
-\end{proof}	
+		\item
+			\begin{proof}
 
-\item \begin{proof}
-	Seja $\alpha < 1$, vamos provar que $\Pr(\liminf_n M_n/\log n \geq \alpha) = 1$. Basta ver que a.s. 
-	somente para finitos termos vale que $M_n/\log n < \alpha$. Temos
-	\[	
-		\sum_{n \geq 1} \Pr(M_n /\log n < \alpha) = \sum_{n \geq 1} \Pr(\max_{i \in [n]} X_i \leq \alpha\log n) = \sum_{n \geq 1} \Pr( \bigcap_{i \in [n]} \{X_i \leq \alpha \log n\})
-	\]
-	segue por independência
-	\[
-		\sum_{n \geq 1} \Pr( \bigcap_{i \in [n]} \{X_i \leq \alpha \log n\}) = \sum_{n \geq 1} (1 - n^{-\alpha})^n \leq \sum_{n \geq 1} \exp(-n^{1 - \alpha}).
-	\]
-	\end{proof}
-	Se $\alpha < 1$ essa série converge super rapidamente, já que $n^{1 - \alpha} \gg 2\log n$ e portanto existe $n_0$ tal que
-	\[
-		\sum_{n \geq n_0} \exp(-n^{1 - \alpha}) \leq \sum_{n \geq n_0} \exp(- 2\log n) = \sum_{n \geq n_0} \frac{1}{n^2} < \infty. 
-	\]
-	Segue por Borel Cantelli [\ref{lemma:borel_cantelli_1}] que para todo tal $\alpha$, a.s. $Mn/ \log n < \alpha$ somente finitas vezes.
-	Fazendo o mesmo argumento que antes (tomando interseção sobre uma sequência enumerável), temos $\Pr(\liminf M_n / \log n \geq 1) = 1$.
-
-	\item \begin{proof}
-		
-	\end{proof}
-\end{enumerate}
+			\end{proof}
+	\end{enumerate}
 
 \end{exercise}
 
