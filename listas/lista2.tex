@@ -411,7 +411,63 @@ Seguem as soluções.
 		\end{proof}
 \end{enumerate}
 
-% \subsection{Outros exercícios}
+\subsection{Outros exercícios}
+\begin{exercise}
+	Sejam $(X_i)_{i \geq 1}$ variáveis aleatória i.i.d não negativas com
+	$X_i \equiv X$. Mostre que
+	\begin{enumerate}[label=(\alph*)]
+		\item Se $\Ex X < \infty$ então a.s
+			\[
+				\limsup_n \frac{X_n}{n} = 0.
+			\]
+		\item Se $\Ex X = \infty$ então a.s
+			\[
+				\limsup_n \frac{X_n}{n} = \infty.
+			\]
+	\end{enumerate}
+\end{exercise}
+\begin{proof}
+	Não sabia exatamente fazer essa, gostei do truque do Augusto.
+	Para a letra (a), suponha que $\Ex X < \infty$, então segue que para
+	todo $M > 0$,
+	\[
+		\infty > \Ex X = \int_0^\infty \Pr(X > t) dt = \sum_{n = 0}^\infty
+		\int_{Mn}^{M(n+1)} \Pr(X > t) dt \geq \sum_{n = 1}^\infty \Pr(X > Mn).
+	\]
+	Ou seja, para todo $M > 0$,
+	\[
+		\sum_{n = 1}^\infty \Pr(X_n/n > M) =  \sum_{n = 1}^\infty \Pr(X/n >
+		M) < \infty.
+	\]
+	Por Borel Cantelli [\ref{lemma:borel_cantelli_1}],
+	\[
+		\Pr(\limsup_n X_n/n \leq M) = 1,
+	\]
+	interseccionando para $M > 0 \in \mathbb{Q}$, temos
+	\[
+		\Pr(\limsup_n X_n/n \leq 0) = 1.
+	\]
+	Como $X_n/n$ é sempre positivo, segue o resultado.
+
+	Para (b), fazemos o mesmo mas com a outra desigualdade. Se $\Ex X =
+	\infty$ então para todo $M > 0$,
+	\[
+		\infty = \Ex X = \int_0^\infty \Pr(X > t) dt = \sum_{n = 0}^\infty
+		\int_{Mn}^{M(n+1)} \Pr(X > t) dt \leq \sum_{n = 0}^\infty \Pr(X > Mn).
+	\]
+	Logo,
+	\[
+		\sum_{n \geq 1} \Pr(X/n > M) = \sum_{n \geq 1} \Pr(X_n/n > M) = \infty.
+	\]
+	Como os eventos são independentes, por
+	[\ref{lemma:borel_cantelli_2}], eles acontecem
+	infinitas vezes quase certamente. Isso é, para todo $M > 0$,
+	\[
+		\Pr(\limsup_n X_n/n \geq M) = 1
+	\]
+	interseccionando para $M \to \infty$, segue que $\Pr(\limsup_n X_n/n
+	= \infty) = 1$.
+\end{proof}
 
 % \begin{exercise}
 % 	(2) Seja $X = (X_1, \dots, X_d)$ um vetor gaussiano, i.e. $X$ tem densidade
