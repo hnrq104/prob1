@@ -281,9 +281,45 @@ Seguem as soluções.
 			Fazendo o mesmo argumento que antes (tomando interseção sobre uma
 			sequência enumerável), temos $\Pr(\liminf M_n / \log n \geq 1) = 1$.
 
-		\item
+			Fiquei curioso em como fazer as próximas duas letras
+			"corretamente", acredito que a minha solução não é a intencionada.
+		\item[(c) e (d)]
 			\begin{proof}
-
+				Vamos ver que (a) implica $\limsup_n M_n/\log n \leq 1$ a.s. Por
+				consequência (c) vale e, junto com (b), temos (d).
+				Seja $\omega$ tal que $\limsup_n X_n(\omega)/\log n \leq 1$. Se
+				$\alpha > 1$, existe $n_0(\omega) \in \N$ tal que para
+				todo $n > n_0(\omega)$ vale
+				\[
+					X_n(\omega) \leq \alpha \log n.
+				\]
+				Agora, para esse $\omega$ fixo, se $n > n_0$, vale que
+				\[
+					\frac{M_n(\omega)}{\log n} = \max\bigg( \max_{j \leq n_0}
+						\frac{X_j(\omega)}{\log n},  \max_{n_0 < m \leq
+					n}\frac{X_m(\omega)}{\log n} \bigg)
+				\]
+				e $X_m/\log n \leq X_m/\log m \leq \alpha$ para $n_0 < m \leq n$.
+				Portanto, tomando $\limsup$, temos
+				\[
+					\limsup_n \frac{M_n(\omega)}{\log n} \leq \max(\max_{j \leq n_0}
+					\frac{X_j(\omega)}{\log n}, \alpha) = \alpha
+				\]
+				pois $X_j(\omega)/\log n \to 0$ quando $j$ está fixo. Portanto,
+				para todo $\alpha > 1$,
+				\[
+					\{\limsup_n X_n/\log n \leq 1\} \subset \{\limsup_n M_n/\log n
+					\leq \alpha\}
+				\]
+				ou seja, para todo tal $\alpha$,
+				\[
+					\Pr\{\limsup_n M_n/\log n \leq \alpha\} \geq \Pr\{\limsup_n
+					X_n/\log n \leq 1\} = 1
+				\]
+				tomando interseções sobre enumeráveis, segue o resultado que
+				\[
+					\Pr\{\limsup_n M_n/\log n \leq 1\} = 1.
+				\]
 			\end{proof}
 	\end{enumerate}
 
