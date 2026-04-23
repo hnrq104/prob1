@@ -3,7 +3,7 @@
 \subsection{Exercícios obrigatórios}
 \begin{exercise}
 	\label{lista2:ex1}
-	(1) Construa varíaveis aleatórias $X_1, \dots X_n$ tal que para todo
+	Construa variáveis aleatórias $X_1, \dots X_n$ tal que para todo
 	$S \subsetneq [n]$,
 	temos que $(X_i)_{i \in S}$ são independentes mas $X_1, \dots X_n$
 	não são independentes.
@@ -17,9 +17,9 @@ e seja $(X_1, \dots, X_n)$ tomado uniformemente sobre $A$. Vamos ver
 que $(X_i)$ satisfaz as condições do problema. Precisamos de um lema fácil.
 \begin{lemma}
 	Dado $n > 0 \in \Z$ e $c \in \{0,1\}$, seja
-	\[ A = \{(v_1, \dots, v_n) \in \{0,1\}^n : \sum_{i = 1}^n v_i \equiv
+	\[ A_n = \{(v_1, \dots, v_n) \in \{0,1\}^n : \sum_{i = 1}^n v_i \equiv
 	c \pmod 2\}\]
-	então $|A| = 2^{n-1}$.
+	então $|A_n| = 2^{n-1}$.
 \end{lemma}
 
 \begin{proof}
@@ -27,7 +27,7 @@ que $(X_i)$ satisfaz as condições do problema. Precisamos de um lema fácil.
 	Claramente é verdade para $n = 1$.
 	Suponha que vale para $n > 1$, para $n+1$ temos
 	\begin{align*}
-		|A| &= |A\cap\{v_{n+1} = 0\}| + |A \cap \{v_{n+1}=1\}|\\
+		|A_{n+1}| &= |A_{n+1}\cap\{v_{n+1} = 0\}| + |A_{n+1} \cap \{v_{n+1}=1\}|\\
 		&= |\{(v_1,\dots,v_n) \in \{0,1\}^n : \sum_{i=0}^{n} v_i = c \pmod 2\}|\\
 		&+ |\{(v_1,\dots,v_n) \in \{0,1\}^n : \sum_{i=0}^{n} v_i = c - 1 \pmod 2\}|\\
 		&= 2^{n-1} + 2^{n-1} = 2^{n}
@@ -41,18 +41,19 @@ que $(X_i)$ satisfaz as condições do problema. Precisamos de um lema fácil.
 		A = \{(v_1, \dots, v_n) \in \{0,1\}^n : \sum_{i = 1}^n v_i \equiv 0 \pmod 2\},
 	\]
 	já sabemos que $|A| = 2^{n-1}$, tome $(X_1, \dots, X_n)$ um vetor
-	uniformemente em $A$.
+	uniformemente em $A$. Isso é, nossa variável aleatória $X_i$ é a
+	i-ésima coordenada desse vetor aleatório.
 	Vamos verificar que para todo $S \subsetneq [n]$, $(X_i)_{i \in S}$
 	são independentes.
 	Temos para toda sequência $(a_i)_{i \in S}$ de elementos $a_i \in \{0,1\}$ que
 	\[
-		\Pr(\forall i \in S,  X_i = c_i) = \frac{|\{\vec{v} \in \{0,
+		\Pr(\forall i \in S,  X_i = a_i) = \frac{|\{\vec{v} \in \{0,
 				1\}^{n-|S|}: \sum_{i=1}^{n-|S|} v_i \equiv c - \sum_{i \in S}
 		a_i\}|}{2^{n-1}} = 2^{-|S|}
 	\]
 	pelo lema anterior. E, portanto, usando o lema novamente,
 	\[
-		\Pr(\forall i \in S,  X_i = c_i) = \prod_{i \in S}^{}\Pr(X_i = c_i) = 2^{-|S|}
+		\Pr(\forall i \in S,  X_i = a_i) = \prod_{i \in S}^{}\Pr(X_i = a_i) = 2^{-|S|}
 	\]
 	logo $(X_i)_{i \in S}$ são independentes (para ser preciso eu
 		deveria considerar $\Pr(X_i \in B_i)$ onde $B_i \subset \{0,1\}$,
@@ -65,7 +66,7 @@ que $(X_i)$ satisfaz as condições do problema. Precisamos de um lema fácil.
 \end{proof}
 
 \begin{exercise}
-	(3) Prove que
+	Prove que
 	\begin{enumerate}[label=(\alph*)]
 		\item Para toda medida de probabilidade $\mu_X$ em $(\R,
 			\mathcal{B}(\R))$ vale que $\mu_X(A) \in \{0,1\}$ para
@@ -74,7 +75,7 @@ que $(X_i)$ satisfaz as condições do problema. Precisamos de um lema fácil.
 		\item Se $X$ é uma variável aleatória independente de si mesma,
 			então $X = c$ quase certamente para $c \in \R$.
 		\item Se $X$ é $c \in \R$ quase certamente, então $X$ é
-			independente de qualquer outra varíavel aletória.
+			independente de qualquer outra variável aletória.
 		\item Sejam $X$ e $Y$ independentes. Dê uma condição necessária e
 			suficiente para $\Pr(X = Y) > 0$.
 		\item Se $X$ e $Y$ são independentes tais que $X + Y = c$ quase
@@ -195,135 +196,220 @@ Seguem as soluções.
 			\]
 	\end{enumerate}
 
-	Para esse exercício, enunciarei os lemas de Borel-Cantelli provados em aula.
-	\begin{lemma}
-		\label{lemma:borel_cantelli_1}
-		Sejam $(E_n)_{n \in \N}$ eventos em um espaço de probabilidade
-		$(\Omega, \Sigma)$. Se
-		\[
-			\sum_{n \geq 1} \Pr(E_n) < \infty,
-		\]
-		então quase certamente somente finitos deles acontecem.
-	\end{lemma}
-
-	\begin{lemma}
-		\label{lemma:borel_cantelli_2}
-		Sejam $(E_n)_{n \in \N}$ eventos independentes espaço de
-		probabilidade $(\Omega, \Sigma)$. Se
-		\[
-			\sum_{n \geq 1} \Pr(E_n) = \infty,
-		\]
-		então quase certamente infinitos deles acontecem.
-	\end{lemma}
-
-	\begin{enumerate}[label=(\alph*)]
-		\item
-			\begin{proof}
-				Seja $\alpha > 1$ e $E_n = \{X_n/\log n > \alpha\}$. Vamos
-				mostrar que a.s somente finitos $E_n$ ocorrem. Note que
-				\[
-					\sum_{n \geq 1} \Pr\bigg(\frac{X_n}{\log n} > \alpha\bigg) =
-					\sum_{n \geq 1} \Pr(\text{Exp}(1) > \alpha \log n)
-					= \sum_{n \geq 1} n^{-\alpha} < \infty
-				\]
-				pelo fato da última série ser convergente. Segue pelo lema
-				[\ref{lemma:borel_cantelli_1}] que se $m \in \N$ e
-				$A_m$ é o evento
-				\[A_m := \bigg\{\frac{X_n}{\log n} > 1 + \frac{1}{m} \quad
-					\text{finitas vezes}\bigg\}
-				= \bigg\{\limsup_n \frac{X_n}{\log n} \leq 1 + \frac{1}{m}\bigg\}\]
-				então $\Pr(A_m) = 1$. Temos por fim, $\Pr(\limsup_n X_n/\log(n)
-				\leq 1) = \Pr(\bigcap_{m \in \N} A_m) = 1$.
-
-				Falta a outra desigualdade, seja $\alpha < 1$ e defina os $E_n$
-				igualmente. Note que os $E_n$ são independentes e
-				crucialmente
-				\[
-					\sum_{n \geq 1} \Pr(E_n) = \sum_{n \geq 1} \Pr(\text{Exp}(1) >
-					\alpha \log n) = \sum_{n \geq 1} n^{-\alpha} = \infty.
-				\]
-				Pelo lema [\ref{lemma:borel_cantelli_2}], para todo $\alpha < 1$,
-				os $E_n$ acontecem infinitas vezes com probabilidade $1$.
-				Ou seja, definindo
-				\[
-					B_m :=  \bigg\{\limsup_n \frac{X_n}{\log n} \geq 1 - \frac{1}{m}\bigg\}
-				\]
-				segue que $\Pr(B_m) = 1$ e portanto $\Pr(\limsup_n X_n/\log n
-				\geq 1) = \Pr(\bigcap_{m \in \N} B_m) = 1$. Juntando as duas
-				afirmações, segue que $\Pr(\limsup_n X_n/\log n = 1) = 1$.
-			\end{proof}	
-
-		\item
-			\begin{proof}
-				Seja $\alpha < 1$, vamos provar que $\Pr(\liminf_n M_n/\log n
-				\geq \alpha) = 1$. Basta ver que a.s.
-				somente para finitos termos vale que $M_n/\log n < \alpha$. Temos
-				\[	
-					\sum_{n \geq 1} \Pr(M_n /\log n < \alpha) = \sum_{n \geq 1}
-					\Pr(\max_{i \in [n]} X_i \leq \alpha\log n) = \sum_{n \geq 1}
-					\Pr( \bigcap_{i \in [n]} \{X_i \leq \alpha \log n\})
-				\]
-				segue por independência
-				\[
-					\sum_{n \geq 1} \Pr( \bigcap_{i \in [n]} \{X_i \leq \alpha \log
-					n\}) = \sum_{n \geq 1} (1 - n^{-\alpha})^n \leq \sum_{n \geq 1}
-					\exp(-n^{1 - \alpha}).
-				\]
-			\end{proof}
-			Se $\alpha < 1$ essa série converge super rapidamente, já que
-			$n^{1 - \alpha} \gg 2\log n$ e portanto existe $n_0$ tal que
-			\[
-				\sum_{n \geq n_0} \exp(-n^{1 - \alpha}) \leq \sum_{n \geq n_0}
-				\exp(- 2\log n) = \sum_{n \geq n_0} \frac{1}{n^2} < \infty.
-			\]
-			Segue por Borel Cantelli [\ref{lemma:borel_cantelli_1}] que para
-			todo tal $\alpha$, a.s. $Mn/ \log n < \alpha$ somente finitas vezes.
-			Fazendo o mesmo argumento que antes (tomando interseção sobre uma
-			sequência enumerável), temos $\Pr(\liminf M_n / \log n \geq 1) = 1$.
-
-			Fiquei curioso em como fazer as próximas duas letras
-			"corretamente", acredito que a minha solução não é a intencionada.
-		\item[(c) e (d)]
-			\begin{proof}
-				Vamos ver que (a) implica $\limsup_n M_n/\log n \leq 1$ a.s. Por
-				consequência (c) vale e, junto com (b), temos (d).
-				Seja $\omega$ tal que $\limsup_n X_n(\omega)/\log n \leq 1$. Se
-				$\alpha > 1$, existe $n_0(\omega) \in \N$ tal que para
-				todo $n > n_0(\omega)$ vale
-				\[
-					X_n(\omega) \leq \alpha \log n.
-				\]
-				Agora, para esse $\omega$ fixo, se $n > n_0$, vale que
-				\[
-					\frac{M_n(\omega)}{\log n} = \max\bigg( \max_{j \leq n_0}
-						\frac{X_j(\omega)}{\log n},  \max_{n_0 < m \leq
-					n}\frac{X_m(\omega)}{\log n} \bigg)
-				\]
-				e $X_m/\log n \leq X_m/\log m \leq \alpha$ para $n_0 < m \leq n$.
-				Portanto, tomando $\limsup$, temos
-				\[
-					\limsup_n \frac{M_n(\omega)}{\log n} \leq \max(\max_{j \leq n_0}
-					\frac{X_j(\omega)}{\log n}, \alpha) = \alpha
-				\]
-				pois $X_j(\omega)/\log n \to 0$ quando $j$ está fixo. Portanto,
-				para todo $\alpha > 1$,
-				\[
-					\{\limsup_n X_n/\log n \leq 1\} \subset \{\limsup_n M_n/\log n
-					\leq \alpha\}
-				\]
-				ou seja, para todo tal $\alpha$,
-				\[
-					\Pr\{\limsup_n M_n/\log n \leq \alpha\} \geq \Pr\{\limsup_n
-					X_n/\log n \leq 1\} = 1
-				\]
-				tomando interseções sobre enumeráveis, segue o resultado que
-				\[
-					\Pr\{\limsup_n M_n/\log n \leq 1\} = 1.
-				\]
-			\end{proof}
-	\end{enumerate}
-
 \end{exercise}
+Para esse exercício, enunciarei os lemas de Borel-Cantelli provados em aula.
+\begin{lemma}
+	\label{lemma:borel_cantelli_1}
+	Sejam $(E_n)_{n \in \N}$ eventos em um espaço de probabilidade
+	$(\Omega, \Sigma)$. Se
+	\[
+		\sum_{n \geq 1} \Pr(E_n) < \infty,
+	\]
+	então quase certamente somente finitos deles acontecem.
+\end{lemma}
+
+\begin{lemma}
+	\label{lemma:borel_cantelli_2}
+	Sejam $(E_n)_{n \in \N}$ eventos independentes espaço de
+	probabilidade $(\Omega, \Sigma)$. Se
+	\[
+		\sum_{n \geq 1} \Pr(E_n) = \infty,
+	\]
+	então quase certamente infinitos deles acontecem.
+\end{lemma}
+
+\begin{enumerate}[label=(\alph*)]
+	\item
+		\begin{proof}
+			Seja $\alpha > 1$ e $E_n = \{X_n/\log n > \alpha\}$. Vamos
+			mostrar que a.s somente finitos $E_n$ ocorrem. Note que
+			\[
+				\sum_{n \geq 1} \Pr\bigg(\frac{X_n}{\log n} > \alpha\bigg) =
+				\sum_{n \geq 1} \Pr(\text{Exp}(1) > \alpha \log n)
+				= \sum_{n \geq 1} n^{-\alpha} < \infty
+			\]
+			pelo fato da última série ser convergente. Segue pelo lema
+			[\ref{lemma:borel_cantelli_1}] que se $m \in \N$ e
+			$A_m$ é o evento
+			\[A_m := \bigg\{\frac{X_n}{\log n} > 1 + \frac{1}{m} \quad
+				\text{finitas vezes}\bigg\}
+			= \bigg\{\limsup_n \frac{X_n}{\log n} \leq 1 + \frac{1}{m}\bigg\}\]
+			então $\Pr(A_m) = 1$. Temos por fim, $\Pr(\limsup_n X_n/\log(n)
+			\leq 1) = \Pr(\bigcap_{m \in \N} A_m) = 1$.
+
+			Falta a outra desigualdade, seja $\alpha < 1$ e defina os $E_n$
+			igualmente. Note que os $E_n$ são independentes e
+			crucialmente
+			\[
+				\sum_{n \geq 1} \Pr(E_n) = \sum_{n \geq 1} \Pr(\text{Exp}(1) >
+				\alpha \log n) = \sum_{n \geq 1} n^{-\alpha} = \infty.
+			\]
+			Pelo lema [\ref{lemma:borel_cantelli_2}], para todo $\alpha < 1$,
+			os $E_n$ acontecem infinitas vezes com probabilidade $1$.
+			Ou seja, definindo
+			\[
+				B_m :=  \bigg\{\limsup_n \frac{X_n}{\log n} \geq 1 - \frac{1}{m}\bigg\}
+			\]
+			segue que $\Pr(B_m) = 1$ e portanto $\Pr(\limsup_n X_n/\log n
+			\geq 1) = \Pr(\bigcap_{m \in \N} B_m) = 1$. Juntando as duas
+			afirmações, segue que $\Pr(\limsup_n X_n/\log n = 1) = 1$.
+		\end{proof}	
+
+	\item
+		\begin{proof}
+			Seja $\alpha < 1$, vamos provar que $\Pr(\liminf_n M_n/\log n
+			\geq \alpha) = 1$. Basta ver que a.s.
+			somente para finitos termos vale que $M_n/\log n < \alpha$. Temos
+			\[	
+				\sum_{n \geq 1} \Pr(M_n /\log n < \alpha) = \sum_{n \geq 1}
+				\Pr(\max_{i \in [n]} X_i \leq \alpha\log n) = \sum_{n \geq 1}
+				\Pr( \bigcap_{i \in [n]} \{X_i \leq \alpha \log n\})
+			\]
+			segue por independência
+			\[
+				\sum_{n \geq 1} \Pr( \bigcap_{i \in [n]} \{X_i \leq \alpha \log
+				n\}) = \sum_{n \geq 1} (1 - n^{-\alpha})^n \leq \sum_{n \geq 1}
+				\exp(-n^{1 - \alpha}).
+			\]
+		\end{proof}
+		Se $\alpha < 1$ essa série converge super rapidamente, já que
+		$n^{1 - \alpha} \gg 2\log n$ e portanto existe $n_0$ tal que
+		\[
+			\sum_{n \geq n_0} \exp(-n^{1 - \alpha}) \leq \sum_{n \geq n_0}
+			\exp(- 2\log n) = \sum_{n \geq n_0} \frac{1}{n^2} < \infty.
+		\]
+		Segue por Borel Cantelli [\ref{lemma:borel_cantelli_1}] que para
+		todo tal $\alpha$, a.s. $Mn/ \log n < \alpha$ somente finitas vezes.
+		Fazendo o mesmo argumento que antes (tomando interseção sobre uma
+		sequência enumerável), temos $\Pr(\liminf M_n / \log n \geq 1) = 1$.
+
+		Fiquei curioso em como fazer as próximas duas letras
+		"corretamente", acredito que a minha solução não é a intencionada.
+	\item[(c) e (d)]
+		\begin{proof}
+			Vamos ver que (a) implica $\limsup_n M_n/\log n \leq 1$ a.s. Por
+			consequência (c) é verdade e juntando com (b), temos (d).
+			Seja $\omega$ tal que $\limsup_n X_n(\omega)/\log n \leq 1$. Se
+			$\alpha > 1$, existe $n_0(\omega) \in \N$ tal que para
+			todo $n > n_0(\omega)$ vale
+			\[
+				X_n(\omega) \leq \alpha \log n.
+			\]
+			Agora, para esse $\omega$ fixo, se $n > n_0$, vale que
+			\[
+				\frac{M_n(\omega)}{\log n} = \max\bigg( \max_{j \leq n_0}
+					\frac{X_j(\omega)}{\log n},  \max_{n_0 < m \leq
+				n}\frac{X_m(\omega)}{\log n} \bigg)
+			\]
+			e $X_m/\log n \leq X_m/\log m \leq \alpha$ para $n_0 < m \leq n$.
+			Portanto, tomando $\limsup$, temos
+			\[
+				\limsup_n \frac{M_n(\omega)}{\log n} \leq \max(\max_{j \leq n_0}
+				\frac{X_j(\omega)}{\log n}, \alpha) = \alpha
+			\]
+			pois $X_j(\omega)/\log n \to 0$ quando $j$ está fixo. Portanto,
+			para todo $\alpha > 1$,
+			\[
+				\{\limsup_n X_n/\log n \leq 1\} \subset \{\limsup_n M_n/\log n
+				\leq \alpha\}
+			\]
+			ou seja, para todo tal $\alpha$,
+			\[
+				\Pr\{\limsup_n M_n/\log n \leq \alpha\} \geq \Pr\{\limsup_n
+				X_n/\log n \leq 1\} = 1
+			\]
+			tomando interseções sobre enumeráveis, segue o resultado que
+			\[
+				\Pr\{\limsup_n M_n/\log n \leq 1\} = 1.
+			\]
+		\end{proof}
+\end{enumerate}
+
+\begin{exercise}
+	Seja $(X_n)_n$ uma sequência de variáveis aleatórias e
+	defina $\mathcal{B}_n = \sigma((X_k)_{k \geq n})$ e
+	$\mathcal{B}_\infty = \bigcap_n \mathcal{B}_n$.
+	\begin{enumerate}[label=(\alph*)]
+		\item Considere $f : \N \to \R_+$. Mostre que os seguintes eventos
+			estão em $\mathcal{B}_\infty$.
+			\begin{enumerate}[label=(\roman*)]
+				\item $\{X_n/f(n) \in B \ \text{i.o}\}$ para $B \in \mathcal{B}(\R)$.
+				\item $\{\limsup_n X_n/f(n) > c\}$ para $c \in \R$.
+				\item $\{\exists \lim_n X_n/f(n)\}$.
+			\end{enumerate}
+		\item Conclua que se $\mathcal{E} := \{\exists \lim_n X_n/f(n)\}$,
+			então $\limsup_n X_n/f(n)$ e $\lim_n \id[\mathcal{E}]X_n/f(n)$ são
+			variáveis aleatórias $\mathcal{B}_\infty$ mensuráveis.
+	\end{enumerate}
+\end{exercise}
+Seguem as soluções.
+\begin{enumerate}[label=(\alph*)]
+	\item
+		\begin{proof}
+			Vamos escrever cada um dos conjuntos como uma interseção esperta.
+			Para (i), temos
+			\[
+				\{X_n/f(n) \in B \ \text{i.o}\} = \bigcap_{n \geq 1} \bigcup_{m
+				\geq n} \{X_m/f(m) \in B\}
+			\]
+			como para todo $m \geq n$, $\{X_m/f(m) \in B\} \in \mathcal{B}_n$,
+			segue para todo $k \in \N$,
+			\[
+				\bigcap_{n \geq 1} \bigcup_{m \geq n} \{X_m/f(m) \in B\} =
+				\bigcap_{n \geq k} \bigcup_{m \geq n} \{X_m/f(m) \in B\} \in \mathcal{B}_k
+			\]
+			ou seja $\{X_n/f(n) \in B \ \text{i.o}\} \in \bigcap_k
+			\mathcal{B}_k = \mathcal{B}_\infty$.
+
+			Para (ii) fazemos algo muito similar,
+			abrindo a definição
+			\[
+				\{\limsup_n X_n/f(n) > c\} \quad = \quad \{\exists\ d > c,
+				\ X_n/f(n) \in (d,\infty) \ \text{i.o}\}.
+			\]
+			Por (i), para cada $d \in \R$ o evento $\{X_n/f(n) \in (d,\infty)
+			\ \text{i.o}\} \in \mathcal{B}_\infty$. Portanto,
+			\[
+				\bigcup_{d \in \mathbb{Q}, d > c} \{X_n/f(n) \in (d,\infty)
+				\ \text{i.o}\} \in \mathcal{B}_\infty
+			\]
+			e isso é equivalente ao que queríamos mostrar.
+
+			Em (iii) podemos expressar a existência do limite como a sequência
+			ser de Cauchy. Notamos que
+			\[
+				\{\exists \lim_n X_n/f(n)\} = \{X_n/f(n) \ \text{é de Cauchy}\} =
+				\bigcap_{\substack{\eps \in \mathbb{Q},\\ \eps > 0}} \bigcup_{n
+				\geq 1} \bigcap_{m \geq n} \{|X_n/f(n) - X_m/f(m)| < \eps\}.
+			\]			
+			Segue assim como antes (brincando com conjuntos crescentes e
+			decrescentes) que para todo $k \in \N$,
+			\[
+				\bigcup_{n > 1} \bigcap_{m \geq n} \{|X_n/f(n) - X_m/f(m)| <
+				\eps\} = \bigcup_{n > k} \bigcap_{m \geq n} \{|X_n/f(n) -
+				X_m/f(m)| < \eps\} \in \mathcal{B}_k
+			\]
+			e portanto,
+			\[
+				\bigcup_{n > 1}\bigcap_{m \geq n} \{|X_n/f(n) - X_m/f(m)| <
+				\eps\} \in \bigcap_{k \in \N} \mathcal{B}_k = \mathcal{B}_\infty.
+			\]
+			Fazendo a interseção para $\eps \in \mathbb{Q}$ com $\eps > 0$,
+			segue o resultado $\{\exists \lim_n X_n/f(n)\} \in \mathcal{B}_\infty$.
+		\end{proof}
+
+	\item
+		\begin{proof}
+			Segue diretamente da letra (a) que $\id(\mathcal{E})$ é mensurável
+			e, notando que os conjuntos $(c,\infty)$ com $c \in \R$ geram
+			$\mathcal{B}(\R)$, que
+			$\limsup_n X_n/f(n)$ é mensurável. Mas então fica claro que
+			\[
+				\lim_n \id[\mathcal{E}]X_n/f(n) = \id[\mathcal{E}] \limsup_n
+				X_n/f(n) \in \mathcal{B}_\infty.
+			\]
+		\end{proof}
+\end{enumerate}
 
 % \subsection{Outros exercícios}
 
