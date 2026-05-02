@@ -96,10 +96,11 @@ Seguem as soluções.
 			pode ser que $\mu(A) = \mu(B) = 1$.
 			Portanto, para cada $n \in \N$, seja
 			\[
-				\R = \bigsqcup_{i \in \Z} \bigg[\frac{i}{2^n}, \frac{i+1}{2^n}\bigg)
+				\R = \bigcup_{i \in \Z} \bigg[\frac{i}{2^n}, \frac{i+1}{2^n}\bigg].
 			\]
-			pela observação anterior, para cada $n$, existe somente um
-			intervalo $A_n = [i/2_n, (i+1)/2^n)$
+			Se para algum $i,n$ valer que $\mu(\{i/2^n\}) > 0$, segue pela hipótese que $\mu(\{i/2^n\}) = 1$ e o resultado segue. Se não,
+			pela observação anterior, para cada $n$ existe somente um
+			intervalo $A_n = [i/2_n, (i+1)/2^n]$
 			com $\mu(A_n) = 1$. Claramente esses intervalos $A_n$ são
 			encaixados e se intersectam em um ponto $p$.
 			Vale que $\mu(\{p\}) = \lim_{n\to\infty} \mu(A_n) = 1$.
@@ -128,8 +129,7 @@ Seguem as soluções.
 			\]
 			onde na segunda igualdade usamos que se $\mu(C) \in \{0,1\}$,
 			então $\mu(C \cap D) = \mu(C)\mu(D)$. Segue
-			que $(X,Y)$ são independentes na álgebra dos retângulos,
-			aproximando indicadoras por retângulos ou usando Dynkin, segue o resultado.
+			que $(X,Y)$ são independentes na álgebra dos retângulos, usando Dynkin segue o resultado.
 		\end{proof}
 
 	\item
@@ -304,8 +304,8 @@ Para esse exercício, enunciarei os lemas de Borel-Cantelli provados em aula.
 			e $X_m/\log n \leq X_m/\log m \leq \alpha$ para $n_0 < m \leq n$.
 			Portanto, tomando $\limsup$, temos
 			\[
-				\limsup_n \frac{M_n(\omega)}{\log n} \leq \max(\max_{j \leq n_0}
-				\frac{X_j(\omega)}{\log n}, \alpha) = \alpha
+				\limsup_n \frac{M_n(\omega)}{\log n} \leq \limsup_n \max_{j \leq n_0}
+				(\frac{X_j(\omega)}{\log n}, \alpha) = \alpha
 			\]
 			pois $X_j(\omega)/\log n \to 0$ quando $j$ está fixo. Portanto,
 			para todo $\alpha > 1$,
