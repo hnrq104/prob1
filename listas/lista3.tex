@@ -177,6 +177,17 @@ Para essa seção vou enunciar o teorema usado nos exercícios.
 \end{proof}
 
 \subsection{Teorema Central do Limite}
+Vou enunciar o Teorema Central do Limite para ser utilizado nas próximas questões.
+\begin{theorem}
+    \label{trm:clt_simple}
+    Seja $(X_n)_n \sim X$ uma sequência i.i.d de variáveis aleatórias com $\Ex X = \mu$ e $0 < \var X = \sigma^2 < \infty$. Se $S_n = \sum_{i = 0}^n X_i$, 
+    segue que, em distribuição,
+    \[
+        \frac{S_n - n\mu}{\sigma\sqrt{n}} \to G(0,1)
+    \]
+    onde $G(0,1)$ é a Gaussiana normal.
+    
+\end{theorem}
 %novamente 2 e 3 parecem legais
 \begin{exercise}
     Prove que se $(X_n)_n \sim \text{Poi}(1)$ i.i.d então $\sum_{i=1}^n X_i \sim \text{Poi}(n)$ e calcule 
@@ -184,6 +195,35 @@ Para essa seção vou enunciar o teorema usado nos exercícios.
         \lim_{n\to\infty} e^{-n}\sum_{k=0}^n \frac{n^k}{k!}.
     \]
 \end{exercise}
+\begin{proof}
+    Precisamos de um lema simples. Sejam $X \sim \text{Poi}(\alpha)$ e $Y \sim \text{Poi}(\beta)$ independentes,
+    então vamos ver que $X + Y \sim \text{Poi}(\alpha + \beta)$ e o primeiro resultado segue por indução.
+    Basta ver que 
+    \begin{align*}
+        \Pr(X + Y = t) &= \sum_{m = 0}^{t}\Pr(X = m)\Pr(Y = t - m)\\
+        &= \sum_{i = 0}^t e^{-\alpha}\frac{\alpha^m}{m!}e^{-\beta}\frac{\beta^{t - m}}{(t-m)!}\\
+        &= e^{-(\alpha + \beta)}\frac{1}{t!}\sum_{m = 0}^t \binom{t}{m}\alpha^m \beta^{t-m}\\
+        &= e^{-(\alpha + \beta)} \frac{(\alpha + \beta)^t}{t!} = \Pr(\text{Poi}(\alpha + \beta) = t). 
+    \end{align*}
+
+    Para a segunda parte, notamos que (chamando $S_n = \sum_{i = 1}^n X_i$)
+    \begin{align*}
+        \lim_{n\to\infty} e^{-n}\sum_{t = 0}^n \frac{n^t}{t!} &= \lim_{n \to \infty} \Pr(\text{Poi}(n) \leq n)\\
+        &= \lim_{n \to \infty}\Pr(S_n\leq n)\\
+        &= \lim_{n \to \infty} \Pr\bigg(\frac{S_n - n}{\sqrt{n}} \leq 0\bigg).
+    \end{align*}
+    Se $\Ex X = 1$ e $0 <\Ex X^2 < \infty$, então, pelo CLT [\ref{trm:clt_simple}], sabemos justamente que esse limite tende a $\Pr(\sigma G(0,1) \leq 0) = 1/2$.
+    Basta calcular $\Ex X$ e $\Ex X^2$. Temos
+    \[
+        \Ex X = \sum_{t = 0}^{\infty} t \Pr(X = t) = \sum_{t = 0}^\infty \frac{te^{-1}}{t!} = e^{-1}\sum_{t = 1}^\infty \frac{1}{(t-1)!} = 1.
+    \]
+    Similarmente, 
+    \[
+        \Ex X^2 =e^{-1}\sum_{t = 0}^\infty \frac{t^2}{t!} = e^{-1} \sum_{t = 1}^\infty \frac{t}{(t-1)!} = e^{-1}\sum_{t = 0} \frac{t}{t!} + \frac{1}{t!} = 2.
+    \]
+    Logo $\var X = \Ex X^2 - (\Ex X)^2 = 1$ e o resultado segue.
+
+\end{proof}
 
 %3 é bonitinho também
 
