@@ -2,91 +2,121 @@
 %Vou listar os que acho legais
 
 \subsection{Convergência de variáveis aleatórias}
-%Duas formas de resolver esse com sparsification e com lemma de Kroenecher e teorema das duas séries.
+%Duas formas de resolver esse com sparsification e com lemma de
+% Kroenecher e teorema das duas séries.
 \begin{exercise}
-    Seja $(X_n)_{n\geq1}$ uma sequência de r.v's e $C > 0$ uma constante tal que 
-    $\Ex X_n^2 < C$ para todo $n\geq1$ e $\text{Cov}(X_n, X_m) = 0$ para todo $n \neq m$. Prove que 
-    \begin{enumerate}[label=(\alph*)]
-        \item 
-        \[\lim_{n\to\infty} \frac{S_{n^2} - \Ex S_{n^2}}{n^2} = 0 \quad \text{a.s}.\]
-        \item 
-        \[\lim_{n\to\infty} \frac{S_{n} - \Ex S_{n}}{n} = 0 \quad \text{a.s}.\]
-    \end{enumerate}
+	Seja $(X_n)_{n\geq1}$ uma sequência de r.v's e $C > 0$ uma constante tal que
+	$\Ex X_n^2 < C$ para todo $n\geq1$ e $\text{Cov}(X_n, X_m) = 0$ para
+	todo $n \neq m$. Prove que
+	\begin{enumerate}[label=(\alph*)]
+		\item
+			\[\lim_{n\to\infty} \frac{S_{n^2} - \Ex S_{n^2}}{n^2} = 0 \quad \text{a.s}.\]
+		\item
+			\[\lim_{n\to\infty} \frac{S_{n} - \Ex S_{n}}{n} = 0 \quad \text{a.s}.\]
+	\end{enumerate}
 \end{exercise}
- 
+
 \begin{proof}
-    Sendo $\var(X_n) = \Ex X_n^2 - (\Ex X_n)^2$, temos $\var(X_n) < C$. Segue que
-    \[
-        \var(S_n) = \var\bigg(\sum_{i=1}^n X_i\bigg) = \sum_{i=1}^n \var(X_i) + \sum_{i \neq j \leq n} \text{Cov}(X_i,X_j) = \sum_{i=1}^n \var(X_i) \leq nC.
-    \]
-    Portanto $\var(S_n/n) \leq C/n$ e, crucialmente para a letra (a), $\var(S_{n^2}/n^2) \leq C/n^2$ que é somável.
-    Segue de Chebyshev que para todo $\eps > 0$, 
-    \[
-        \Pr(|S_{n^2} - \Ex S_{n^2}| > n^2\eps) \leq \frac{C}{\eps^2n^2}
-    \]
-    portanto $\sum_{n\geq 1} \Pr(|S_{n^2} - \Ex S_{n^2}|/n^2 >\eps) < \infty$ e, por Borel-Cantelli [\ref{lemma:borel_cantelli_1}], acontece somente finitas vezes q.c.
-    Como vale para todo $\eps > 0$, interseccionando para os racionais positivos, temos que 
-    \[
-        \Pr\bigg(\lim_{n\to \infty} \frac{S_{n^2} - \Ex S_{n^2}}{n^2} = 0\bigg) = 1.
-    \]
+	Sendo $\var(X_n) = \Ex X_n^2 - (\Ex X_n)^2$, temos $\var(X_n) < C$. Segue que
+	\[
+		\var(S_n) = \var\bigg(\sum_{i=1}^n X_i\bigg) = \sum_{i=1}^n
+		\var(X_i) + \sum_{i \neq j \leq n} \text{Cov}(X_i,X_j) =
+		\sum_{i=1}^n \var(X_i) \leq nC.
+	\]
+	Portanto $\var(S_n/n) \leq C/n$ e, crucialmente para a letra (a),
+	$\var(S_{n^2}/n^2) \leq C/n^2$ que é somável.
+	Segue de Chebyshev que para todo $\eps > 0$,
+	\[
+		\Pr(|S_{n^2} - \Ex S_{n^2}| > n^2\eps) \leq \frac{C}{\eps^2n^2}
+	\]
+	portanto $\sum_{n\geq 1} \Pr(|S_{n^2} - \Ex S_{n^2}|/n^2 >\eps) <
+	\infty$ e, por Borel-Cantelli [\ref{lemma:borel_cantelli_1}],
+	acontece somente finitas vezes q.c.
+	Como vale para todo $\eps > 0$, interseccionando para os racionais
+	positivos, temos que
+	\[
+		\Pr\bigg(\lim_{n\to \infty} \frac{S_{n^2} - \Ex S_{n^2}}{n^2} = 0\bigg) = 1.
+	\]
 
-    Para letra (b), vamos cotar a probabilidade de $S_n$ desviar muito de $S_{n^2}$. Sem perda de generalidade (e para facilitar as contas), vamos 
-    supor que as variáveis aletórias $X_n$ tem $\Ex X_n = 0$ de forma que (a) diz $\Pr(\lim_n S_{n^2}/n^2 = 0) = 1$. Dado $\eps > 0$ e $i \in (n^2, (n+1)^2)$ inteiro, temos por Chebyshev
-    \[
-        \Pr(|S_i - S_{n^2}|> n^2\eps) = \Pr\bigg(\bigg|\sum_{m > n^2}^i X_m\bigg| > n^2\eps\bigg) \leq \frac{C(i-n^2)}{\eps^2n^4} \leq \frac{2C}{\eps^2n^3}.
-    \]
-    Pela cota da união, segue que 
-    \[
-       \Pr(\exists\,i \in (n^2, (n+1)^2) \text{ tal que } |S_i - S_{n^2}|> n^2\eps) \leq \frac{4C}{\eps^2n^2}   
-    \]
-    que é somável. De [\ref{lemma:borel_cantelli_1}], sabemos que para todo $\eps > 0$ esses eventos acontecem finitas vezes q.c.
-    Agora afirmo que já temos o necessário para o resultado.
+	Para letra (b), vamos cotar a probabilidade de $S_n$ desviar muito
+	de $S_{n^2}$. Sem perda de generalidade (e para facilitar as contas), vamos
+	supor que as variáveis aletórias $X_n$ tem $\Ex X_n = 0$ de forma
+	que (a) diz $\Pr(\lim_n S_{n^2}/n^2 = 0) = 1$. Dado $\eps > 0$ e $i
+	\in (n^2, (n+1)^2)$ inteiro, temos por Chebyshev
+	\[
+		\Pr(|S_i - S_{n^2}|> n^2\eps) = \Pr\bigg(\bigg|\sum_{m > n^2}^i
+		X_m\bigg| > n^2\eps\bigg) \leq \frac{C(i-n^2)}{\eps^2n^4} \leq
+		\frac{2C}{\eps^2n^3}.
+	\]
+	Pela cota da união, segue que
+	\[
+		\Pr(\exists\,i \in (n^2, (n+1)^2) \text{ tal que } |S_i - S_{n^2}|>
+		n^2\eps) \leq \frac{4C}{\eps^2n^2}
+	\]
+	que é somável. De [\ref{lemma:borel_cantelli_1}], sabemos que para
+	todo $\eps > 0$ esses eventos acontecem finitas vezes q.c.
+	Agora afirmo que já temos o necessário para o resultado.
 
-    Dado $\eps > 0$, quase certamente existe $M > 0$ tal que para todo $n \geq M$, $|S_{n^2}| < \eps n^2$ e, 
-    dado $i \in (n^2, (n+1)^2)$, $|S_i - S_{n^2}| < \eps n^2$, segue que para todo $m > M^2$, se $m \in [t^2, (t+1)^2]$, temos 
-    $|S_m| \leq |S_m - S_{t^2}| + |S_{t^2}| \leq 2\eps t^2$. Portanto,
-    \[
-        \frac{|S_m|}{m} \leq \frac{|S_m|}{t^2} \leq 2\eps.
-    \]
-    Como isso vale para todo $\eps > 0$, interseccionando pelos racionais positivos segue o resultado.
+	Dado $\eps > 0$, quase certamente existe $M > 0$ tal que para todo
+	$n \geq M$, $|S_{n^2}| < \eps n^2$ e,
+	dado $i \in (n^2, (n+1)^2)$, $|S_i - S_{n^2}| < \eps n^2$, segue que
+	para todo $m > M^2$, se $m \in [t^2, (t+1)^2]$, temos
+	$|S_m| \leq |S_m - S_{t^2}| + |S_{t^2}| \leq 2\eps t^2$. Portanto,
+	\[
+		\frac{|S_m|}{m} \leq \frac{|S_m|}{t^2} \leq 2\eps.
+	\]
+	Como isso vale para todo $\eps > 0$, interseccionando pelos
+	racionais positivos segue o resultado.
 \end{proof}
-
 
 %Esse aqui é bem maneiro
 \begin{exercise}
-    Sejam $(X_n)_n$ r.v's tais que cada $X_n$ toma valores em um conjunto finito $A_n \subset \R$. Suponha também 
-    que $\lim_{n\to\infty} \max_{x \in A_n} \Pr(X_n = x) = 0$. Mostre que
-    \[
-        F_{X_n}(X_n) \to U[0,1]
-    \]
-    em distribuição.
+	Sejam $(X_n)_n$ r.v's tais que cada $X_n$ toma valores em um
+	conjunto finito $A_n \subset \R$. Suponha também
+	que $\lim_{n\to\infty} \max_{x \in A_n} \Pr(X_n = x) = 0$. Mostre que
+	\[
+		F_{X_n}(X_n) \to U[0,1]
+	\]
+	em distribuição.
 \end{exercise}
 Precisaremos de um leminha usual de Análise na Reta que enunciarei sem prova.
 
 \begin{lemma}
-    (Integral de Riemann) Dizemos que $P = \{t_0 < t_1 <\dots \leq t_n\} \subset \R$ com $t_0 = a$ e $t_n = b$ é 
-    um pontilhamento do intervalo $[a,b]$. Denotamos $|P|_\infty := \max_{1 \leq i \leq n} \{t_{i} - t_{i-1}\}$. Seja $f : [a,b] \to \R$
-    uma função contínua e $(P_m)_{m\geq 1}$  uma sequência de pontilhamentos com $|P_m|_\infty \to 0$, então 
-    \[
-        \lim_{m \to \infty} \sum_{i = 0}^{|P_m| - 1} (t_{i+1} - t_i)f(t_i) = \int_a^b f(t) dt.
-    \]
+	(Integral de Riemann) Dizemos que $P = \{t_0 < t_1 <\dots \leq t_n\}
+	\subset \R$ com $t_0 = a$ e $t_n = b$ é
+	um pontilhamento do intervalo $[a,b]$. Denotamos $|P|_\infty :=
+	\max_{1 \leq i \leq n} \{t_{i} - t_{i-1}\}$. Seja $f : [a,b] \to \R$
+	uma função contínua e $(P_m)_{m\geq 1}$  uma sequência de
+	pontilhamentos com $|P_m|_\infty \to 0$, então
+	\[
+		\lim_{m \to \infty} \sum_{i = 0}^{|P_m| - 1} (t_{i+1} - t_i)f(t_i)
+		= \int_a^b f(t) dt.
+	\]
 \end{lemma}
 
-\begin{proof}[Prova do Exercício] Vamos calcular a distribuição de $Y_n = F_{X_n}(X_n)$ e ver o que obtemos. Se $A_n = \{a_1 < \dots < a_m\}$
-    então
-    \[
-        F_{X_n}(a_i) = \sum_{j = 1}^i \Pr(X_n = a_j).
-    \]
-    Seja $s_n(i) = \sum_{j = 1}^i \Pr(X_n = a_j)$ a soma parcial até $i$ das probabilidades com $s_n(0) = 0$. Segue que $Y_n$ toma valores em $\{s_n(i)\}$
-    e $\Pr(Y_n = s_n(i)) = \Pr(X_n = a_i)$. Note que crucialmente $s_n(m) = 1$ e $s_n(1) \to 0$ quando $n \to \infty$, portanto 
-    os valores $\{s_n(i)\}$ formam quase um pontilhamento - a menos do $t_0 = 0$, que não importa já que $s_n(1)\to 0$. Agora, dada qualquer função contínua 
-    limitada $g : \R \to \R$, notamos que 
-    \[
-    \Ex g(Y_n) = \sum_{i = 1}^m g(s_n(i))\Pr(Y_n = s_n(i)) = \sum_{i = 1}^m g(s_n(i)) (s_n(i) - s_n(i - 1)) \to \int_0^1 f(t) dt = \Ex f(U[0,1])
-    \]
-    quando $n \to \infty$ pelo lema anterior e pela hipótese que $\max \{s_n(i) - s_n(i+1)\} = \max \Pr(X_n = a_i) \to 0$ quando $n \to \infty$.
-    Portanto, como $f$ foi arbitrária, $Y_n \to U[0,1]$ em distribuição.
-    
+\begin{proof}[Prova do Exercício] Vamos calcular a distribuição de
+	$Y_n = F_{X_n}(X_n)$ e ver o que obtemos. Se $A_n = \{a_1 < \dots < a_m\}$
+	então
+	\[
+		F_{X_n}(a_i) = \sum_{j = 1}^i \Pr(X_n = a_j).
+	\]
+	Seja $s_n(i) = \sum_{j = 1}^i \Pr(X_n = a_j)$ a soma parcial até $i$
+	das probabilidades com $s_n(0) = 0$. Segue que $Y_n$ toma valores em
+	$\{s_n(i)\}$
+	e $\Pr(Y_n = s_n(i)) = \Pr(X_n = a_i)$. Note que crucialmente
+	$s_n(m) = 1$ e $s_n(1) \to 0$ quando $n \to \infty$, portanto
+	os valores $\{s_n(i)\}$ formam quase um pontilhamento - a menos do
+	$t_0 = 0$, que não importa já que $s_n(1)\to 0$. Agora, dada
+	qualquer função contínua
+	limitada $g : \R \to \R$, notamos que
+	\[
+		\Ex g(Y_n) = \sum_{i = 1}^m g(s_n(i))\Pr(Y_n = s_n(i)) = \sum_{i =
+		1}^m g(s_n(i)) (s_n(i) - s_n(i - 1)) \to \int_0^1 f(t) dt = \Ex f(U[0,1])
+	\]
+	quando $n \to \infty$ pelo lema anterior e pela hipótese que $\max
+	\{s_n(i) - s_n(i+1)\} = \max \Pr(X_n = a_i) \to 0$ quando $n \to \infty$.
+	Portanto, como $f$ foi arbitrária, $Y_n \to U[0,1]$ em distribuição.
+
 \end{proof}
 
 %Os outros valem a pena fazer para treinar bem as definições.
@@ -94,134 +124,180 @@ Precisaremos de um leminha usual de Análise na Reta que enunciarei sem prova.
 \subsection{Lei dos Grandes Números}
 Para essa seção vou enunciar o teorema usado nos exercícios.
 \begin{theorem}
-    \label{trm:large_numbers}
-    (Lei dos Grandes Números) Seja $(X_n)_{n\geq 1} \sim X$ uma sequência i.i.d de r.v's com $\Ex |X| < \infty$. Seja $S_n = \sum_{i \leq n} X_i$, então
-    \[
-        \lim_{n \to \infty} \frac{S_n}{n} = \Ex X.
-    \]
+	\label{trm:large_numbers}
+	(Lei dos Grandes Números) Seja $(X_n)_{n\geq 1} \sim X$ uma
+	sequência i.i.d de r.v's com $\Ex |X| < \infty$. Seja $S_n = \sum_{i
+	\leq n} X_i$, então
+	\[
+		\lim_{n \to \infty} \frac{S_n}{n} = \Ex X.
+	\]
 \end{theorem}
 
 \begin{exercise}
-    Um soquete acomoda lâmpadas que  queimam e são trocadas. Suponha que a $n$-ésima lâmpada queima após um tempo aleatório $X_n \geq 0$ e 
-    após queimada, leva um tempo $Y_n \geq 0$ para ser substituída por uma nova $(n+1)$-ésima lâmpada. Suponha que $(X_n)_{n\geq1} \sim X$ são i.i.d e 
-    independentes de $(Y_n)_{n\geq 1} \sim Y$ também i.i.d com $\Ex X$ e $\Ex Y$ finitas e $\Ex Y > 0$. Seja $R(t)$ o tempo total em que há uma lâmpada funcionando 
-    no soquete no intervalo $[0,t]$. Prove que quase certamente
-    \[
-        \lim_{t \to \infty} \frac{R(t)}{t} = \frac{\Ex X}{ \Ex X + \Ex Y}.
-    \]
+	Um soquete acomoda lâmpadas que  queimam e são trocadas. Suponha que
+	a $n$-ésima lâmpada queima após um tempo aleatório $X_n \geq 0$ e
+	após queimada, leva um tempo $Y_n \geq 0$ para ser substituída por
+	uma nova $(n+1)$-ésima lâmpada. Suponha que $(X_n)_{n\geq1} \sim X$ são i.i.d e
+	independentes de $(Y_n)_{n\geq 1} \sim Y$ também i.i.d com $\Ex X$ e
+	$\Ex Y$ finitas e $\Ex Y > 0$. Seja $R(t)$ o tempo total em que há
+	uma lâmpada funcionando
+	no soquete no intervalo $[0,t]$. Prove que quase certamente
+	\[
+		\lim_{t \to \infty} \frac{R(t)}{t} = \frac{\Ex X}{ \Ex X + \Ex Y}.
+	\]
 \end{exercise}
 
 \begin{proof}
-    Notamos, por definição, que
-    \[
-        R\bigg( \sum_{i = 1}^n X_i + Y_i\bigg) = \sum_{i = 1}^n X_i.
-    \]
-    Portanto, por [\ref{trm:large_numbers}], quase certamente, 
-    \[
-        \lim_{n\to\infty} \frac{R (\sum_{i = 1}^n X_i + Y_i)}{n} = \Ex X.
-    \]
-    Da mesma forma, por [\ref{trm:large_numbers}], temos quase certamente 
-    \[
-        \lim_{n \to \infty} \frac{\sum_{i=1}^n X_i + Y_i}{n} = \Ex X + \Ex Y
-    \]
-    i.e quase certamente,
-    \[
-        \bigg|\frac{\sum_{i=1}^n X_i + Y_i}{n} - (\Ex X + \Ex Y) \bigg| = o(1) \quad \Rightarrow \quad \sum_{i = 1}^n X_i + Y_i = (1 \pm o(1))n(\Ex X + \Ex Y).
-    \]
-    Logo,
-    \[
-        \lim_{n\to\infty} \frac{R (\sum_{i = 1}^n X_i + Y_i)}{\sum_{i = 1}^n X_i + Y_i} = \lim_{n\to\infty} \frac{R (\sum_{i = 1}^n X_i + Y_i)}{n(\Ex X + \Ex Y)} = \frac{\Ex X}{\Ex X + \Ex Y}.
-    \]
-    Seja $t(n) = \sum_{i = 1}^n X_i + Y_i$, provamos o resultado para esses tempos, $\lim_{n} R(t(n))/t(n) = a = \Ex X/(\Ex X+ \Ex Y)$ q.c. Provamos também que 
-    $t(n) = (1 \pm o(1))\alpha n$ q.c onde $\alpha = \Ex X + \Ex Y > 0$. Agora vamos usar monotocidade para provar o resultado geral. 
-    
-    Note que q.c $\lim_{n\to \infty} t(n+1)/t(n) = 1$ e se $t \in (t(n),t(n+1))$ então
-    \[
-        a \leftarrow \frac{t(n)}{t(n+1)}\frac{R(t(n))}{t(n)} = \frac{R(t(n))}{t(n+1)} \leq \frac{R(t)}{t} \leq \frac{R(t(n+1))}{t(n)} = \frac{t(n+1)}{t(n)}\frac{R(t(n))}{t(n+1)} \rightarrow a.
-    \] 
-    Finalizando a prova.
+	Notamos, por definição, que
+	\[
+		R\bigg( \sum_{i = 1}^n X_i + Y_i\bigg) = \sum_{i = 1}^n X_i.
+	\]
+	Portanto, por [\ref{trm:large_numbers}], quase certamente,
+	\[
+		\lim_{n\to\infty} \frac{R (\sum_{i = 1}^n X_i + Y_i)}{n} = \Ex X.
+	\]
+	Da mesma forma, por [\ref{trm:large_numbers}], temos quase certamente
+	\[
+		\lim_{n \to \infty} \frac{\sum_{i=1}^n X_i + Y_i}{n} = \Ex X + \Ex Y
+	\]
+	i.e quase certamente,
+	\[
+		\bigg|\frac{\sum_{i=1}^n X_i + Y_i}{n} - (\Ex X + \Ex Y) \bigg| =
+		o(1) \quad \Rightarrow \quad \sum_{i = 1}^n X_i + Y_i = (1 \pm
+		o(1))n(\Ex X + \Ex Y).
+	\]
+	Logo,
+	\[
+		\lim_{n\to\infty} \frac{R (\sum_{i = 1}^n X_i + Y_i)}{\sum_{i =
+		1}^n X_i + Y_i} = \lim_{n\to\infty} \frac{R (\sum_{i = 1}^n X_i +
+		Y_i)}{n(\Ex X + \Ex Y)} = \frac{\Ex X}{\Ex X + \Ex Y}.
+	\]
+	Seja $t(n) = \sum_{i = 1}^n X_i + Y_i$, provamos o resultado para
+	esses tempos, $\lim_{n} R(t(n))/t(n) = a = \Ex X/(\Ex X+ \Ex Y)$ q.c.
+ Provamos também que
+	$t(n) = (1 \pm o(1))\alpha n$ q.c onde $\alpha = \Ex X + \Ex Y > 0$.
+	Agora vamos usar monotocidade para provar o resultado geral.
+
+	Note que q.c $\lim_{n\to \infty} t(n+1)/t(n) = 1$ e se $t \in (t(n),
+	t(n+1))$ então
+	\[
+		a \leftarrow \frac{t(n)}{t(n+1)}\frac{R(t(n))}{t(n)} =
+		\frac{R(t(n))}{t(n+1)} \leq \frac{R(t)}{t} \leq
+		\frac{R(t(n+1))}{t(n)} = \frac{t(n+1)}{t(n)}\frac{R(t(n))}{t(n+1)}
+		\rightarrow a.
+	\]
+	Finalizando a prova.
 \end{proof}
 
 \begin{exercise}
-    Seja $X_0 = (0,1) \in \R^2$. Definimos as varíaveis aleatórias $(X_n)_{n\geq1}$ de forma indutiva. $X_{n+1}$ é escolhida uniforme na bola $B(0,|X_n|) \subset \R^2$.
-    Ou seja $X_{n+1}/|X_n|$ tem distribuição uniforme em $B(0,1) \subset \R^2$ e é independente de $X_1, \dots X_n$. Mostre que quase certamente
-    \[
-        \frac{-\log|X_n|}{n} \to \frac{1}{2}.
-    \]
+	Seja $X_0 = (0,1) \in \R^2$. Definimos as varíaveis aleatórias
+	$(X_n)_{n\geq1}$ de forma indutiva. $X_{n+1}$ é escolhida uniforme
+	na bola $B(0,|X_n|) \subset \R^2$.
+	Ou seja $X_{n+1}/|X_n|$ tem distribuição uniforme em $B(0,1) \subset
+	\R^2$ e é independente de $X_1, \dots X_n$. Mostre que quase certamente
+	\[
+		\frac{-\log|X_n|}{n} \to \frac{1}{2}.
+	\]
 \end{exercise}
 
 \begin{proof}
-    Essa é bem bonitinha. A primeira coisa a observar é que podemos supor que $X_m \neq 0$ para todo $m$, já que a probabilidade de isso acontecer é $0$. Agora
-    podemos dar continuidade a questão.
-    
-    Notamos, pela observação do exercício, que a família $(X_{n+1}/|X_n|)_{n\geq1}$ é i.i.d e distribuída como $Z \sim U(B(0,1))$. Crucialmente,
-    $|X_{n+1}/X_n| \sim |Z|$ que tem função de distribuição. Usando coordenadas polares é fácil ver que dado $E$ mensurável em $\R$
-    \begin{align*}
-        \Pr(|Z| \in E) &= \frac{1}{|B(0,1)|}\int_{B(0,1)} \id[|z| \in E]dz\\
-        &=\frac{1}{|B(0,1)|}\int_{S^1} \int_0^1 r \id[r \in E] dr d\sigma\\
-        &=\frac{|S^1|}{|B(0,1)|}\int_E r dr = \int_E 2r dr.
-    \end{align*}
-    onde $d\sigma$ é a medida usual de $S^1$. Portanto, segue que $d|Z| = 2rdr$ restrita em $[0,1]$. Segue que podemos escrever 
-    \[
-        |X_m| = |X_0| \prod_{j = 0}^{m-1} \frac{|X_{j+1}|}{|X_j|} \quad \text{e} \quad \log(|X_m|) = \sum_{j = 0}^{m-1} \log(|X_{j+1}|/|X_j|). 
-    \]
-    Claramente, $\log(|X_{j+1}|/|X_j|)$ são i.i.d distribuidas como $\log(|Z|)$ e portanto, se elas possuem esperança finita, podemos aplicar [\ref{trm:large_numbers}] para determinar 
-    $\lim_{m\to\infty} \log(|X_m|)/m$ q.c. Temos, integrando por partes, que
-    \[
-    \Ex \log(|Z|) = 2\int_{0}^1 r\log (r)dr = 2\bigg[ \frac{r^2\log(r)}{2}\bigg|_0^1 - \int_0^1 \frac{r}{2}dr\bigg] = -1/2.
-    \]
-    Segue por [\ref{trm:large_numbers}] que q.c
-    \[
-        \lim_{m\to\infty} \frac{\log(|X_m|)}{m} = \lim_{m \to \infty} \frac{1}{m}\sum_{j = 0}^{m-1} \log(|X_{j+1}|/|X_j|) = \E[\log(|Z|)] = -1/2.
-    \]
+	Essa é bem bonitinha. A primeira coisa a observar é que podemos
+	supor que $X_m \neq 0$ para todo $m$, já que a probabilidade de isso
+	acontecer é $0$. Agora
+	podemos dar continuidade a questão.
+
+	Notamos, pela observação do exercício, que a família
+	$(X_{n+1}/|X_n|)_{n\geq1}$ é i.i.d e distribuída como $Z \sim U(B(0,
+	1))$. Crucialmente,
+	$|X_{n+1}/X_n| \sim |Z|$ que tem função de distribuição. Usando
+	coordenadas polares é fácil ver que dado $E$ mensurável em $\R$
+	\begin{align*}
+		\Pr(|Z| \in E) &= \frac{1}{|B(0,1)|}\int_{B(0,1)} \id[|z| \in E]dz\\
+		&=\frac{1}{|B(0,1)|}\int_{S^1} \int_0^1 r \id[r \in E] dr d\sigma\\
+		&=\frac{|S^1|}{|B(0,1)|}\int_E r dr = \int_E 2r dr.
+	\end{align*}
+	onde $d\sigma$ é a medida usual de $S^1$. Portanto, segue que $d|Z|
+	= 2rdr$ restrita em $[0,1]$. Segue que podemos escrever
+	\[
+		|X_m| = |X_0| \prod_{j = 0}^{m-1} \frac{|X_{j+1}|}{|X_j|} \quad
+		\text{e} \quad \log(|X_m|) = \sum_{j = 0}^{m-1} \log(|X_{j+1}|/|X_j|).
+	\]
+	Claramente, $\log(|X_{j+1}|/|X_j|)$ são i.i.d distribuidas como
+	$\log(|Z|)$ e portanto, se elas possuem esperança finita, podemos
+	aplicar [\ref{trm:large_numbers}] para determinar
+	$\lim_{m\to\infty} \log(|X_m|)/m$ q.c. Temos, integrando por partes, que
+	\[
+		\Ex \log(|Z|) = 2\int_{0}^1 r\log (r)dr = 2\bigg[
+		\frac{r^2\log(r)}{2}\bigg|_0^1 - \int_0^1 \frac{r}{2}dr\bigg] = -1/2.
+	\]
+	Segue por [\ref{trm:large_numbers}] que q.c
+	\[
+		\lim_{m\to\infty} \frac{\log(|X_m|)}{m} = \lim_{m \to \infty}
+		\frac{1}{m}\sum_{j = 0}^{m-1} \log(|X_{j+1}|/|X_j|) = \E[\log(|Z|)] = -1/2.
+	\]
 \end{proof}
 
 \subsection{Teorema Central do Limite}
-Vou enunciar o Teorema Central do Limite para ser utilizado nas próximas questões.
+Vou enunciar o Teorema Central do Limite para ser utilizado nas
+próximas questões.
 \begin{theorem}
-    \label{trm:clt_simple}
-    Seja $(X_n)_n \sim X$ uma sequência i.i.d de variáveis aleatórias com $\Ex X = \mu$ e $0 < \var X = \sigma^2 < \infty$. Se $S_n = \sum_{i = 0}^n X_i$, 
-    segue que, em distribuição,
-    \[
-        \frac{S_n - n\mu}{\sigma\sqrt{n}} \to G(0,1)
-    \]
-    onde $G(0,1)$ é a Gaussiana normal.
-    
+	\label{trm:clt_simple}
+	Seja $(X_n)_n \sim X$ uma sequência i.i.d de variáveis aleatórias
+	com $\Ex X = \mu$ e $0 < \var X = \sigma^2 < \infty$. Se $S_n =
+	\sum_{i = 0}^n X_i$,
+	segue que, em distribuição,
+	\[
+		\frac{S_n - n\mu}{\sigma\sqrt{n}} \to G(0,1)
+	\]
+	onde $G(0,1)$ é a Gaussiana normal.
+
 \end{theorem}
 %novamente 2 e 3 parecem legais
 \begin{exercise}
-    Prove que se $(X_n)_n \sim \text{Poi}(1)$ i.i.d então $\sum_{i=1}^n X_i \sim \text{Poi}(n)$ e calcule 
-    \[
-        \lim_{n\to\infty} e^{-n}\sum_{k=0}^n \frac{n^k}{k!}.
-    \]
+	Prove que se $(X_n)_n \sim \text{Poi}(1)$ i.i.d então $\sum_{i=1}^n
+	X_i \sim \text{Poi}(n)$ e calcule
+	\[
+		\lim_{n\to\infty} e^{-n}\sum_{k=0}^n \frac{n^k}{k!}.
+	\]
 \end{exercise}
 \begin{proof}
-    Precisamos de um lema simples. Sejam $X \sim \text{Poi}(\alpha)$ e $Y \sim \text{Poi}(\beta)$ independentes,
-    então vamos ver que $X + Y \sim \text{Poi}(\alpha + \beta)$ e o primeiro resultado segue por indução.
-    Basta ver que 
-    \begin{align*}
-        \Pr(X + Y = t) &= \sum_{m = 0}^{t}\Pr(X = m)\Pr(Y = t - m)\\
-        &= \sum_{i = 0}^t e^{-\alpha}\frac{\alpha^m}{m!}e^{-\beta}\frac{\beta^{t - m}}{(t-m)!}\\
-        &= e^{-(\alpha + \beta)}\frac{1}{t!}\sum_{m = 0}^t \binom{t}{m}\alpha^m \beta^{t-m}\\
-        &= e^{-(\alpha + \beta)} \frac{(\alpha + \beta)^t}{t!} = \Pr(\text{Poi}(\alpha + \beta) = t). 
-    \end{align*}
+	Precisamos de um lema simples. Sejam $X \sim \text{Poi}(\alpha)$ e
+	$Y \sim \text{Poi}(\beta)$ independentes,
+	então vamos ver que $X + Y \sim \text{Poi}(\alpha + \beta)$ e o
+	primeiro resultado segue por indução.
+	Basta ver que
+	\begin{align*}
+		\Pr(X + Y = t) &= \sum_{m = 0}^{t}\Pr(X = m)\Pr(Y = t - m)\\
+		&= \sum_{i = 0}^t
+		e^{-\alpha}\frac{\alpha^m}{m!}e^{-\beta}\frac{\beta^{t - m}}{(t-m)!}\\
+		&= e^{-(\alpha + \beta)}\frac{1}{t!}\sum_{m = 0}^t
+		\binom{t}{m}\alpha^m \beta^{t-m}\\
+		&= e^{-(\alpha + \beta)} \frac{(\alpha + \beta)^t}{t!} =
+		\Pr(\text{Poi}(\alpha + \beta) = t).
+	\end{align*}
 
-    Para a segunda parte, notamos que (chamando $S_n = \sum_{i = 1}^n X_i$)
-    \begin{align*}
-        \lim_{n\to\infty} e^{-n}\sum_{t = 0}^n \frac{n^t}{t!} &= \lim_{n \to \infty} \Pr(\text{Poi}(n) \leq n)\\
-        &= \lim_{n \to \infty}\Pr(S_n\leq n)\\
-        &= \lim_{n \to \infty} \Pr\bigg(\frac{S_n - n}{\sqrt{n}} \leq 0\bigg).
-    \end{align*}
-    Se $\Ex X = 1$ e $0 <\Ex X^2 < \infty$, então, pelo CLT [\ref{trm:clt_simple}], sabemos justamente que esse limite tende a $\Pr(\sigma G(0,1) \leq 0) = 1/2$.
-    Basta calcular $\Ex X$ e $\Ex X^2$. Temos
-    \[
-        \Ex X = \sum_{t = 0}^{\infty} t \Pr(X = t) = \sum_{t = 0}^\infty \frac{te^{-1}}{t!} = e^{-1}\sum_{t = 1}^\infty \frac{1}{(t-1)!} = 1.
-    \]
-    Similarmente, 
-    \[
-        \Ex X^2 =e^{-1}\sum_{t = 0}^\infty \frac{t^2}{t!} = e^{-1} \sum_{t = 1}^\infty \frac{t}{(t-1)!} = e^{-1}\sum_{t = 0} \frac{t}{t!} + \frac{1}{t!} = 2.
-    \]
-    Logo $\var X = \Ex X^2 - (\Ex X)^2 = 1$ e o resultado segue.
+	Para a segunda parte, notamos que (chamando $S_n = \sum_{i = 1}^n X_i$)
+	\begin{align*}
+		\lim_{n\to\infty} e^{-n}\sum_{t = 0}^n \frac{n^t}{t!} &= \lim_{n
+		\to \infty} \Pr(\text{Poi}(n) \leq n)\\
+		&= \lim_{n \to \infty}\Pr(S_n\leq n)\\
+		&= \lim_{n \to \infty} \Pr\bigg(\frac{S_n - n}{\sqrt{n}} \leq 0\bigg).
+	\end{align*}
+	Se $\Ex X = 1$ e $0 <\Ex X^2 < \infty$, então, pelo CLT
+	[\ref{trm:clt_simple}], sabemos justamente que esse limite tende a
+	$\Pr(\sigma G(0,1) \leq 0) = 1/2$.
+	Basta calcular $\Ex X$ e $\Ex X^2$. Temos
+	\[
+		\Ex X = \sum_{t = 0}^{\infty} t \Pr(X = t) = \sum_{t = 0}^\infty
+		\frac{te^{-1}}{t!} = e^{-1}\sum_{t = 1}^\infty \frac{1}{(t-1)!} = 1.
+	\]
+	Similarmente,
+	\[
+		\Ex X^2 =e^{-1}\sum_{t = 0}^\infty \frac{t^2}{t!} = e^{-1} \sum_{t
+		= 1}^\infty \frac{t}{(t-1)!} = e^{-1}\sum_{t = 0} \frac{t}{t!} +
+		\frac{1}{t!} = 2.
+	\]
+	Logo $\var X = \Ex X^2 - (\Ex X)^2 = 1$ e o resultado segue.
 
 \end{proof}
 
