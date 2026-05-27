@@ -29,7 +29,89 @@
 	\end{align*}
 	Portanto, $\Ex(X - Y)^2 = 0$, devemos ter $X = Y$ q.c.
 
-	Para a letra (b), vamos separar em casos.
+	Letra (b). Para a primeira equação, seja $Z = \Ex[X \mid X \land a]$, vamos
+	mostrar que se $\omega \in \{X \leq a\}$, então $Z(\omega) = X$ q.c e
+	se $\omega \in \{X > a\}$, então $Z(\omega) > a$ q.c. Seja
+	\[B = \{X \leq a\} \cap \{X > Z\} = \{X \land a \leq a\} \cap \{X
+	\land a > Z\} \in \sigma(X \land a).\]
+	Pela propriedade da esperança condicional e pela definição de $B$, segue que
+	\[
+		0 \leq \Ex[\id[B](X - Z)] = \Ex[\id[B](X \land a)] - \Ex[\id[B](Z)] = 0
+	\]
+	portanto $\Pr(B) = 0$. Da mesma forma, considerando $B' = \{X \leq
+	a\} \cap \{X < Z\}$, chegamos a conclusão que $\Pr(B') = 0$. Segue
+	que $X = Z$ q.c em $\{X \leq a\}$.
+
+	Agora seja $C \subset \{X \land a = a\}$ qualquer conjunto $\sigma(X
+	\land a)$ mensurável. Notamos que
+	\[
+		\Ex[\id[C](Z - a)] = \Ex[\id[C]X - \id[C]a] \geq \Ex[\id[C](a - a)] = 0
+	\]
+	logo $Z - a \geq 0$ q.c em $\{X \geq a\}$.
+
+	A primeira equação segue dessa separação em casos. Se $X \leq a$,
+	então $Z = X$ q.c e portanto $Z \land a = X \land a$. Se $X \geq a$,
+	então $Z \geq a$ q.c
+	e temos $Z \land a = a = X \land a$ q.c.
+
+	A segunda e terceira equações são simétricas em $X$ e $Y$, então
+	basta mostrar a segunda. Vamos mostrar que $Y \land a$ satisfaz a
+	condição da experança condicional.
+	Seja $C \in \sigma(Y \land a)$ e vamos dividir $C = C^- \sqcup C^+$ com
+	\begin{align*}
+		C^- = (C \cap \{Y < a\}) = (C \cap \{Y \land a < a\}) \in \sigma(Y \land a)\\
+		C^+ = (C \cap \{Y \geq a\}) = (C \cap \{Y \land a = a\}) \in \sigma(Y \land a)
+	\end{align*}
+	Temos
+	\begin{equation}
+		\label{lista4:ex1:eq1}
+		\Ex[\id[C] Y \land a] = \Ex[\id[C^-]Y] + \Ex[\id[C^+] a].
+	\end{equation}
+	Pela hipótese $\Ex[Y \mid X] = X$ e sabendo que $\sigma(X) = \sigma(Y)$, vemos
+	\[
+		\Ex[\id[C^-]Y] = \Ex[ \id[C^-]\Ex[Y \mid X]] = \Ex[\id[C^-]X] =
+		\Ex[\id[C^-](X \land a)].
+	\]
+	Falta provar que $\Ex[\id[C^+]a] = \Ex[\id[C^+](X \land a)]$.
+	Veremos que em $\{Y \geq a\}$ vale que $X \geq a$ q.c e a equação
+	segue imediatamente.
+	Considere $D = \{Y \geq a\} \cap \{X < a\}$ e
+	\[
+		0 \leq \Ex[\id[D]Y - X] = \Ex[\id[D]Y] - \Ex[\id[D]X] = 0.
+	\]
+	Segue que $\Pr(D) = 0$ e portanto
+	$\Ex[\id[C^+]X \land a] = \Ex[\id[C^+]a]$. Juntando esses dois
+	resultados na equação [\ref{lista4:ex1:eq1}], temos
+	\[
+		\Ex[\id[C] Y \land a] = \Ex[\id[C] X \land a]
+	\]
+	como queríamos mostrar.
+
+	Falta finalizar a questão. Vamos mostrar que $\Pr(X < Y) = 0$, por
+	simetria $\Pr(X = Y) = 1$. Escrevemos crucialmente que
+	\[
+		U := \{X < Y\} = \bigcup_{a \in \mathbb{Q}} \{X \land a < Y \land a\}
+	\]
+	Em particular, dado $s \in \mathbb{Q}$, $U_s = \bigcup_{a \in
+	\mathbb{Q}, a \leq s}\{X \land a < Y \land a\} \in \sigma(X \land a)
+	= \sigma(Y \land a)$. E temos que
+	$U_s$ cresce para $U$.
+
+	Vamos ver que $\Ex[\id[U](Y - X)] = 0$. Seja $\eps > 0$, existe
+	$\delta > 0$ tal que se $\Pr(A) < \delta$, então $\Ex[\id[A] (|X| +
+	|Y|)] < \eps$ (pois $X,Y \in L^1$).
+	Tome $s$ tão grande que $\Pr(U\setminus U_s) < \delta$. Segue que,
+	aplicando o TCD,
+	\begin{align*}
+		\Ex[\id[U](Y - X)] \leq \Ex[\id[U_s] (Y - X)] + \eps = \Ex[\id[U_s]
+		\lim_{a \to \infty} (Y\land a - X\land a)] + \eps\\
+		= \lim_{a \to \infty} \Ex[\id[U_s] Y\land a] - \Ex[\id[U_s] X \land
+		a] + \eps = \eps.
+	\end{align*}
+	Como $\eps$ foi arbitrário, $\Ex[\id[U](Y - X)] \leq 0$ e segue o resultado.
+
+
+
 \end{proof}
 
 \begin{exercise} [5]
@@ -48,6 +130,102 @@
 	\end{enumerate}
 \end{exercise}
 
+\begin{proof}
+	(a) Para encontrar a distribuição de $X$, basta calcular
+	\[
+		\Pr(X = n) = \lim_{t \to \infty} \Pr(X = n, Y \leq t) = b
+		\int_{0}^\infty \frac{(ay)^n}{n!}e^{-(a+b)y}dy.
+	\]
+	Lembrando da função $\Gamma$ e do fatorial e fazendo a substituição
+	$(a+b)y = u$, é fácil ver que
+	\[
+		b \int_{0}^\infty \frac{(ay)^n}{n!}e^{-(a+b)y} dy =
+		\frac{ba^n}{n!}\frac{1}{(a + b)^{n+1}} \int_0^\infty u^n e^{-u} du
+		= \bigg(\frac{a}{a + b}\bigg)^n \frac{b}{(a + b)}
+	\]
+	que é uma geométrica que conta quantidade de fracassos com parâmetro
+	de sucesso $p = b/(a+b)$.
+
+	Para determinar $Y$, basta usar Tonelli-Fubini e vemos que
+	\[
+		\Pr(Y \leq t) = \sum_{n \geq 0} b\int_0^t
+		\frac{(ay)^n}{n!}e^{-(a+b)y} = \int_0^t be^{-(a+b)y} \sum_{n \geq
+		0} \frac{(ay)^n}{n!} dy = \int_0^\infty be^{-by}dy
+	\]
+	que é uma exponêncial com parâmetro $b$.
+
+	(b) Segue da completamente da expressão que (avaliando em cada ponto $n$)
+	\[
+		\Pr(Y \leq t \mid X) = b\int_0^t \frac{(ay)^X}{X!}e^{-(a+b)y} dy.
+	\]
+
+	(c) Fixado $X$, temos (usando a mesma substituição que antes e $\Gamma$)
+	\[
+		\Ex [Y \mid X] = b\int_0^\infty \frac{a^Xy^{X + 1}}{X!}e^{-(a+b)y}dy =
+		\frac{(X+1)!}{X!} \bigg(\frac{a}{a + b}\bigg)^X \frac{b}{(a + b)^2}
+		= \frac{(X + 1)a^Xb}{(a+b)^{X + 2}}.
+	\]
+	Logo, condicionando primeiro em $X$,
+	\[
+		\Ex[Y/(X+1)] = \Ex[ \Ex[Y/(X+1) \mid X]] = \Ex[ \Ex[Y \mid
+		X]/(X+1)] = \frac{b}{(a+b)^2}\Ex[a^X/(a + b)^{X}]
+	\]
+	usando a distribuição de $X$ temos
+	\[
+		\Ex[a^X/(a + b)^{X}] = \sum_{n\geq 0} \Pr(X = n)
+		\frac{a^n}{(a+b)^n} = \frac{b}{(a + b)} \sum_{n \geq 0}
+		\bigg(\frac{a}{a + b}\bigg)^{2n}
+	\]
+	somando a geométrica achamos
+	\[
+		\Ex[a^X/(a + b)^{X}] = \frac{b}{(a + b)} \frac{1}{1 - (a/(a+b))^2}
+		= \frac{a+b}{2a + b}.
+	\]
+	Por fim
+	\[
+		\Ex[Y/(X+1)] = \frac{b}{(a+b)(2a + b)}.
+	\]
+
+	(d) Vamos tentar o palpite óbvio do que deveria ser supondo. Se o
+	mundo fosse finito e bonito, teríamos
+	\[
+		\Ex[\id[X = n] \mid Y = y] \approx \Pr(X = n \mid Y = y) \approx
+		\frac{\Pr(X = n \land Y = y)}{\Pr(Y = y)}.
+	\]
+	Como não é o caso, vamos nos guiar por isso para encontrar um
+	candidato para $\Ex[\id[X = n] \mid Y]$.
+	É intuitivo ver que $\Pr(Y = y) \sim dY(y) = be^{-by}$ pela letra
+	(a). Seria natural que
+	\[
+		\frac{\Pr(X = n \land Y = y)}{\Pr(Y = y)} \sim
+		\frac{b(ay)^ne^{-(a+b)y}}{n!} \frac{1}{be^{-by}} = \frac{b(ay)^n e^{-ay}}{n!}
+	\]
+	Seja então
+	\[
+		Z_n = \frac{b(aY)^n e^{-aY}}{n!}.
+	\]
+	Vamos ver que $Z_n = \Ex[\id[X = n] \mid Y]$ pois satisfaz a
+	propriedade da condicional. Como $Y$ é uma exponêncial
+	e $e^{aY} \leq 1$ vale que $||Z_n||_{L^1} \leq ba^n||Y||_{L^n} <
+	\infty$. Logo $Z_n \in L^1$. Vamos provar que
+	\[\Ex[\id[C] \id[X = n]] = \Ex[\id[C]Z_n]\]
+	quando $C$ é da forma $\{s < Y < t\}$ que é um $\Pi$-sistema gerador
+	de $\sigma(Y)$ o que conclui a afirmação.
+	Mas isso segue da seguinte conta
+	\begin{align*}
+		\Ex[\id[C] \id[X = n]] = \Pr(X = n, s < Y < t) = b\int_s^t
+		\frac{(ay)^n}{n!}e^{-(a+b)y}dy\\
+		= b\int_s^t \frac{b(ay)^n e^{-ay}}{n!} dY(y) = \Ex[\id[C] Z_n].
+	\end{align*}
+
+	Para (e), basta então considerar $X = \sum_{n \geq 1} n\id[X = n]$,
+	donde por linearidade e convergência monótona segue que
+	\[
+		\Ex[X | Y] = \sum_{n \geq 1} n Z_n = b e^{-aY}\sum_{n \geq 1}
+		\frac{(aY)^n}{(n-1)!} = baY.
+	\]
+\end{proof}
+
 \begin{exercise} [9]
 	Suponha que $n$ passageiros irão embarcar em um avião com $n$
 	assentos. Cada passageiro possui um assento marcado que pertence somente a ele.
@@ -60,6 +238,174 @@
 	que lhe foi atribuído originalmente.
 \end{exercise}
 
+\begin{proof}
+	Vamos mudar o paradigma. Enumeramos os passageiros por $[n]$ e
+	"seus" assentos por $[n]$ também. Esqueçamos que o assento $1$ foi designado ao
+	passageiro $1$, vamos somente guardar a informação que os outros
+	passageiros $\{2,\dots, n\}$ nunca tentarão primeiramente sentar no
+	assento $1$.
+	Essa forma de pensar ajuda a justificar a indução.
+
+	Para $1 \leq i \leq n$, seja $X_i$ o assento em que o $i$-ésimo
+	passageiro sentou.  Vamos provar por indução que se $n \geq 2$,
+	$\Pr(X_n = n) = 1/2$.
+	É óbvio que se $n = 1$, então $\Pr(X_1 = 1) = 1$.
+
+	Caso $n = 2$. Esse é bem simples, ou $X_1 = 1$ e sobra somente $X_2
+	= 2$ ou no outro caso $X_1 = 2$ e $X_2 = 1$. Como cada caso tem
+	probabilidade $1/2$, segue que
+	$\Pr(X_2 = 2) = 1/2$.
+
+	Caso $n > 2$. Vamos escrever $\Pr(X_n = n)$ usando a condicional,
+	\[
+		\Pr(X_n = n) = \sum_{j = 1}^n \Pr(X_n = n \mid X_1 = j) \Pr(X_1 =
+		j) = \sum_{j = 1}^n \frac{\Pr(X_n = n \mid X_1 = j)}{n}.
+	\]
+	Agora vamos analisar o que é $\Pr(X_n = n \mid X_1 = j)$. Claramente,
+	se $X_1 = 1$, todos os próximos passageiros sentarão em seus
+	respectivos lugares sem achar ninguém
+	os ocupando e o processo segue deterministicamente, portanto segue
+	que $\Pr(X_n = n \mid X_1 = 1) = 1$. Se $X_1 = n$, como estará para
+	sempre ocupado, é impossível que
+	$X_n = n$ e logo temos $\Pr(X_n = n \mid X_1 = n) = 0$.
+
+	O interessante é o que acontece no meio. Se $X_1 = j$ com $1 < j <
+	n$, então temos
+	que o primeiro passageiro sentou-se no assento $j$ e todos os
+	passageiros $2, 3 , \dots, j-1$ sentam-se normalmente em seus
+	respectivos assentos.
+	Quando o passageiro $j$ embarca, ele vê que alguém se sentou no
+	lugar $j$ e em vez de sentar em um lugar aleatório por raiva, ele
+	volta ao início do avião e acredita que lembrou
+	errado do seu número e esqueceu qual era. Agora o $j$-ésimo
+	passageiro se encontra na mesma situação que o primeiro estava, ele
+	não sabe seu assento, vai sentar em um aleatório
+	e tem um assento específico (o $1$) que nenhum dos passageiros $j+1,
+	j+2 \dots n$ estão interessados. Como esse é exatamente o mesmo
+	modelo que estamos lidando (mas com menos passageiros),
+	por indução segue que $\Pr(X_n = n | X_1 = j) = 1/2$. Substituindo, temos
+	\[
+		\Pr(X_n = n) = \frac{1}{n} + \sum_{j = 1}^{n-1} \frac{1}{2n} = \frac{1}{2}.
+	\]
+\end{proof}
+
+
 \subsection{Outros exercícios}
 
-%4 e 6 valem a pena fazer. 2, 7 e 8 são fáceis. 3 é bom pela prática também.
+%tem que escrever essa melhor.
+\begin{exercise} [4]
+	Seja $X$ uma variável aleatória com p.d.f. Mostre que $\Ex[X \mid
+	|X|] = 0$ sse $F_X = F_{-X}$, onde
+	$F_X(t) = \Pr(X \leq t)$ é a c.d.f.
+\end{exercise}
+\begin{proof}
+	Vamos negar ambos os lados da equivalência e mostrar
+	\[
+		\Ex[X \mid |X|] \neq 0 \iff \exists t \in \R, \quad F_X(t) \neq F_{-X}(t).
+	\]
+	Para a volta, suponha $F_X \neq F_{-X}$ e portanto que as funções
+	densidade $dF_X(s)$ e $dF_{-X}(s) = dF_{X}(-s)$ são distintas em um
+	conjunto de medida não nula.
+	Em particular, como ambas são absolutamente contínuas em relação a
+	Lebesgue, o conjunto $\{dF_X > dF_{-X}\}$ tem medida positiva.
+	Separando em parte positiva e negativa
+	podemos supor s.p.g que $A = \R_{>0} \cap \{dF_X > dF_{-X}\}$ tem
+	medida de Lebesgue positiva. Seja $Z = \Ex[X \mid |X|]$, vamos calcular
+	$\Ex[Z\id[|X| \in A]]$. Pela condicional,
+	\begin{align*}		
+		\Ex[Z\id[|X| \in A]] &= \Ex[X \id[|X| \in A]] = \int_\R x \id[|x|
+		\in A] dF_X(x) dx\\
+		&= \int_{A} x dF_X(x) dx + \int_{-A} x dF_X(x) dx \\
+		&= \int_{A} x dF_X(x) dx + \int_{A} -x dF_X(-x) dx\\
+		&= \int_{A} x (dF_X(x) - dF_{-X}(x)) dx > 0.
+	\end{align*}
+
+	A ida segue a mesma ideia, suponha que $\Ex[X \mid |X|] = Z \neq 0$
+	q.c. Então (s.p.g em relação ao sinal), existe um conjunto $C \in
+	\sigma(|X|)$ de medida positiva
+	tal que $Z > 0$ em $C$. Como $|X|$ tem p.d.f e por Radon-Nykodim $Z$
+	tem p.d.f também, podemos tomar $C$ como sendo um conjunto da forma
+	$\{|X| \in (a,b)\}$ com $a,b > 0$ e $a \neq b$.
+	Segue que
+	\[
+		0 < \Ex[\id[C] Z] = \Ex[\id[|X| \in (a,b)] X] = \int_a^b x(dF_X(x)
+		- dF_{-X}(x)) dx
+	\]
+	E portanto $\{dF_X - dF_{-X} > 0\}$ tem medida positiva. Segue que
+	$F_X \neq F_{-X}$.
+\end{proof}
+
+
+
+\begin{exercise} [7]
+	Seja $(X_n) \sim U[0,1]^d$ i.i.d e $N \sim \text{Poi}(\lambda)$
+	independente de todos os $X_n$ com $\lambda > 0$. Dados $A,B \subset
+	[0,1]^d$ disjuntos,
+	prove que as variáveis
+	\[
+		C_A := |A \cap \{X_1, \dots, X_n\}| \quad \text{e} \quad C_B := |B
+		\cap \{X_1, \dots, X_n\}|
+	\]
+	são independentes e que $C_A \sim \text{Poi}(\lambda m(A))$ assim
+	como $C_B \sim \text{Poi}(\lambda m(B))$ onde $m$ é a medida de Lebesgue.
+\end{exercise}
+
+\begin{proof}
+	Vamos ver que $C_A \sim \text{Poi}(\lambda m(A))$ condicionando no
+	valor de $N$. Note que
+	\begin{align*}
+		\Pr(C_A = t) = \sum_{n \geq 0} \Pr(C_A = t \mid N = n) \Pr(N = n) =
+		e^{-\lambda}\sum_{n \geq 0} \Pr(C_A = t \mid N = n)\frac{\lambda^n}{n!}.
+		% = e^{-\lambda}\sum_{n \geq 0} \Pr(\exists\, S \subset [n], |S| =
+		% t , \forall i \in [n],  X_i \in A \text{ sse } i \in S)
+	\end{align*}
+	Mas notamos que $\Pr(C_A = t \mid N = n)$ é igual a probabilidade de
+	exatamente $t$ dos $n$ $X_i$ sorteados cairem dentro de $A$. Como os
+	$X_i$ são i.i.d e independentes de
+	$N$, segue que a probabilidade disso acontecer é
+	\[
+		\Pr(C_A = t \mid N = n) = \binom{n}{t}\Pr(X \in A)^t(1 - \Pr(X \in
+		A))^{n-t} = \binom{n}{t}m(A)^t(1-m(A))^{n-t}.
+	\]
+	Subsituindo,
+	\begin{align*}
+		\Pr(C_A = t) &= e^{-\lambda}\sum_{n \geq t}
+		\binom{n}{t}m(A)^t(1-m(A))^{n-t}\frac{\lambda^n}{n!}\\
+		&= e^{-\lambda}\frac{(\lambda m(A))^t}{t!}\sum_{n \geq t}
+		\frac{((1-m(A))\lambda)^{n-t}}{(n-t)!}\\
+		&= e^{-\lambda}\frac{(\lambda m(A))^t}{t!} e^{(1-m(A))\lambda}\\
+		&= e^{-\lambda m(A)} \frac{(\lambda m(A))^t}{t!}
+	\end{align*}
+	que segue a distribuição de Poisson com parâmetro $\lambda m(A)$.
+	Segue exatamente da mesma forma que $C_B$ é distribuída como
+	$\text{Poi}(\lambda m(B))$.
+
+	Vamos checar independência, basta mostrar que para todo $t,s \in \N$
+	\[
+		\Pr(C_A = t \land C_B = s) = \Pr(C_A = t)\Pr(C_B = s).
+	\]
+	Novamente, condicionando em $N$, achamos
+	\[
+		\Pr(C_A = t \land C_B = s) = \sum_{n \geq 0} \Pr(C_A = t \land C_B
+		= s \mid N = n) \Pr(N = n),
+	\]
+	Como $A$ e $B$ são disjuntos e os $X_i$ são independentes de $N$,
+	temos que $\Pr(C_A = t \land C_B = s \mid N = n)$ é a probabilidade
+	de entre os $n$ $X_i$, exatamente $t$ caírem dentro de $A$ e $s$
+	caírem dentro de $B$. Isso é igual a
+	\[
+		\Pr(C_A = t \land C_B = s \mid N = n) = \binom{n}{t} \binom{n -
+		t}{s}m(A)^t m(B)^s (1 - (m(A) + m(B)))^{n - t - s}.
+	\]
+	Logo, substituindo na expressão anterior
+	\begin{align*}
+		\Pr(C_A = t \land C_B = s \mid N = n) &= e^{-\lambda} \sum_{n \geq
+		t + s}  \binom{n}{t} \binom{n - t}{s}m(A)^t m(B)^s (1 - (m(A) +
+		m(B)))^{n - t - s} \frac{\lambda^n}{n!}\\
+		&= e^{-\lambda} \frac{\lambda^{t+s} m(A)^t m(B)^s}{t!s!} \sum_{n
+		\geq t + s}\bigg(\frac{(1 - (m(A) + m(B))) \lambda}{(n-t-s)!}\bigg)^{n-t-s}\\
+		&= e^{-\lambda(m(A) + m(B))}\frac{(\lambda m(A))^t}{t!}
+		\frac{(\lambda m(B))^s}{s!} = \Pr(C_A = t) \Pr(C_B = s).
+	\end{align*}
+	como queríamos mostrar.
+\end{proof}
