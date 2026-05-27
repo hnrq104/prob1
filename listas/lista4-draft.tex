@@ -238,10 +238,77 @@
 	\[
 		\Pr(X_n = n) = \frac{1}{n} + \sum_{j = 1}^{n-1} \frac{1}{2n} = \frac{1}{2}.
 	\]
+\end{proof}
 
-	% Vamos provar por indução e mudaremos o paradigma também.
-	% Esqueçamos que o primeiro passageiro tenha um assento designado,
-	% basta reinterpretar que nenhum dos restantes passagereiros tentará
-	% o primeiro assento. caso ele o escolha, todos os outros
-	% passageiros sentarão normalmente.
+\begin{exercise} [7]
+	Seja $(X_n) \sim U[0,1]^d$ i.i.d e $N \sim \text{Poi}(\lambda)$
+	independente de todos os $X_n$ com $\lambda > 0$. Dados $A,B \subset
+	[0,1]^d$ disjuntos,
+	prove que as variáveis
+	\[
+		C_A := |A \cap \{X_1, \dots, X_n\}| \quad \text{e} \quad C_B := |B
+		\cap \{X_1, \dots, X_n\}|
+	\]
+	são independentes e que $C_A \sim \text{Poi}(\lambda m(A))$ assim
+	como $C_B \sim \text{Poi}(\lambda m(B))$ onde $m$ é a medida de Lebesgue.
+\end{exercise}
+
+\begin{proof}
+	Vamos ver que $C_A \sim \text{Poi}(\lambda m(A))$ condicionando no valor de $N$. Note que 
+	\begin{align*}
+		\Pr(C_A = t) = \sum_{n \geq 0} \Pr(C_A = t \mid N = n) \Pr(N = n) = e^{-\lambda}\sum_{n \geq 0} \Pr(C_A = t \mid N = n)\frac{\lambda^n}{n!}.
+		% = e^{-\lambda}\sum_{n \geq 0} \Pr(\exists\, S \subset [n], |S| = t , \forall i \in [n],  X_i \in A \text{ sse } i \in S)
+	\end{align*}
+	Mas notamos que $\Pr(C_A = t \mid N = n)$ é igual a probabilidade de exatamente $t$ dos $n$ $X_i$ sorteados cairem dentro de $A$. Como os $X_i$ são i.i.d e independentes de 
+	$N$, segue que a probabilidade disso acontecer é 
+	\[
+		\Pr(C_A = t \mid N = n) = \binom{n}{t}\Pr(X \in A)^t(1 - \Pr(X \in A))^{n-t} = \binom{n}{t}m(A)^t(1-m(A))^{n-t}.
+	\]
+	Subsituindo,
+	\begin{align*}
+		\Pr(C_A = t) &= e^{-\lambda}\sum_{n \geq t} \binom{n}{t}m(A)^t(1-m(A))^{n-t}\frac{\lambda^n}{n!}\\
+		&= e^{-\lambda}\frac{(\lambda m(A))^t}{t!}\sum_{n \geq t} \frac{((1-m(A))\lambda)^{n-t}}{(n-t)!}\\
+		&= e^{-\lambda}\frac{(\lambda m(A))^t}{t!} e^{(1-m(A))\lambda}\\
+		&= e^{-\lambda m(A)} \frac{(\lambda m(A))^t}{t!}
+	\end{align*}
+	que segue a distribuição de Poisson com parâmetro $\lambda m(A)$. Segue exatamente da mesma forma que $C_B$ é distribuída como $\text{Poi}(\lambda m(B))$.
+
+	Vamos checar independência, basta mostrar que para todo $t,s \in \N$
+	\[
+		\Pr(C_A = t \land C_B = s) = \Pr(C_A = t)\Pr(C_B = s).
+	\]
+	Novamente, condicionando em $N$, achamos 
+	\[
+		\Pr(C_A = t \land C_B = s) = \sum_{n \geq 0} \Pr(C_A = t \land C_B = s \mid N = n) \Pr(N = n),
+	\]
+	Como $A$ e $B$ são disjuntos e os $X_i$ são independentes de $N$, temos que $\Pr(C_A = t \land C_B = s \mid N = n)$ é a probabilidade
+	de entre os $n$ $X_i$, exatamente $t$ caírem dentro de $A$ e $s$ caírem dentro de $B$. Isso é igual a
+	\[
+		\Pr(C_A = t \land C_B = s \mid N = n) = \binom{n}{t} \binom{n - t}{s}m(A)^t m(B)^s (1 - (m(A) + m(B)))^{n - t - s}.
+	\]
+	Logo, substituindo na expressão anterior
+	\begin{align*}
+		\Pr(C_A = t \land C_B = s \mid N = n) &= e^{-\lambda} \sum_{n \geq t + s}  \binom{n}{t} \binom{n - t}{s}m(A)^t m(B)^s (1 - (m(A) + m(B)))^{n - t - s} \frac{\lambda^n}{n!}\\
+		&= e^{-\lambda} \frac{\lambda^{t+s} m(A)^t m(B)^s}{t!s!} \sum_{n \geq t + s}\bigg(\frac{(1 - (m(A) + m(B))) \lambda}{(n-t-s)!}\bigg)^{n-t-s}\\
+		&= e^{-\lambda(m(A) + m(B))}\frac{(\lambda m(A))^t}{t!} \frac{(\lambda m(B))^s}{s!} = \Pr(C_A = t) \Pr(C_B = s).
+	\end{align*}
+	como queríamos mostrar.
+\end{proof}
+
+\begin{exercise}
+	Seja $X_n \sim U(0,1)$ i.i.d. Defina os tempos de recorde $T_1 = 1$ e 
+	\[
+		T_{i+1} := \inf \{n > T_i : X_n > X_{t_i}\}
+	\]
+	com a convenção de $\inf \varnothing = \infty$. Prove que para todo $p \geq 1$
+	\begin{enumerate}[label=(\alph*)]
+		\item $T_p < \infty$ q.c.
+		\item Para todo $k \geq 2$
+		\[
+			\Ex[\id[T_p = k] \mid (T_1, \dots, T_p)] = \Ex[\id[T_p = k] \mid T_p] = \frac{T_p}{k(k-1)}\id[k > T_p]
+		\]
+	\end{enumerate}
+\end{exercise}
+\begin{proof}
+	A parte 
 \end{proof}

@@ -1,0 +1,65 @@
+\section{Lista 4 19/05/2026}
+
+\subsection{Exercícios obrigatórios}
+
+\begin{exercise} [1]
+	Sejam $X,Y \in L^1$ variáveis aleatórias tais que $\Ex [X \mid Y] =
+	Y$ e $\Ex [Y \mid X] = X$. Denote
+	$x \land y := \min(x,y)$. Prove que
+	\begin{enumerate}[label=(\alph*)]
+		\item Se $X,Y \in L^2$ então $X = Y$.
+		\item Se $a > 0$ então
+			\begin{align*}
+				\Ex [X \mid X \land a] \land a &= X \land a\\
+				\Ex [X \land a \mid Y \land a] &= Y \land a\\
+				\Ex [Y \land a \mid X \land a] &= X \land a\\
+			\end{align*}
+	\end{enumerate}
+	conclua que $X = Y$ q.c.
+\end{exercise}
+
+\begin{proof}
+	Para a letra (a) vamos calcular $\Ex (X - Y)^2$. Expandindo e
+	condicionando temos
+	\begin{align*}
+		\Ex(X - Y)^2 &= \Ex X^2 - \Ex XY - \Ex YX + \Ex Y^2\\
+		&= \Ex X^2 - \Ex[\Ex[XY \mid X]] - \Ex[\Ex[YX \mid Y]] + \Ex Y^2\\
+		&= \Ex X^2 - \Ex[X\Ex[Y \mid X]] - \Ex[Y\Ex[X \mid Y]] + \Ex Y^2\\
+		&= \Ex X^2 - \Ex X^2 - \Ex Y^2 + \Ex Y^2 = 0.
+	\end{align*}
+	Portanto, $\Ex(X - Y)^2 = 0$, devemos ter $X = Y$ q.c.
+
+	Para a letra (b), vamos separar em casos.
+\end{proof}
+
+\begin{exercise} [5]
+	Sejam $a,b > 0$ fixos e $(X,Y)$ um vetor aleatório tomando valores
+	em $\Z_{\geq 0} \times \R_{\geq 0}$ com distribuição
+	\[
+		\Pr(X = n, Y \leq t) = b \int_{0}^{t} \frac{(ay)^n}{n!}e^{-(a+b)y} dy
+	\]
+	\begin{enumerate}[label=(\alph*)]
+		\item Encontre as distribuições de $X$ e $Y$.
+		\item Determine a distribuição condicional de $Y$ dado $X$.
+		\item Calcule $\Ex[Y \mid X]$ e $\Ex[Y/(X+1)]$;
+		\item Calcule $\Ex[\id[X = n] \mid Y]$ e com isso a distribuição de
+			$X$ dado $Y$.
+		\item Calcule $\Ex[X \mid Y]$.
+	\end{enumerate}
+\end{exercise}
+
+\begin{exercise} [9]
+	Suponha que $n$ passageiros irão embarcar em um avião com $n$
+	assentos. Cada passageiro possui um assento marcado que pertence somente a ele.
+	Suponha que o primeiro passageiro a embarcar esqueceu qual era seu
+	assento e escolhe uniformemente ao acaso um novo assento. Os passageiros
+	subsequentes todos sabem seu assento, mas caso o encontrem ocupado,
+	irão escolher uniformemente ao acaso um novo assento dentre os que
+	ainda não foram ocupados.
+	Calcule a probabilidade $p_n$ do último passageiro sentar no assento
+	que lhe foi atribuído originalmente.
+\end{exercise}
+
+\subsection{Outros exercícios}
+
+%4 e 6 valem a pena fazer. 2, 7 e 8 são fáceis. 3 é bom pela prática também.
