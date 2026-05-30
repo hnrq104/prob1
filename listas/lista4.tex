@@ -93,8 +93,8 @@
 		U := \{X < Y\} = \bigcup_{a \in \mathbb{Q}} \{X \land a < Y \land a\}
 	\]
 	Em particular, dado $s \in \mathbb{Q}$, $U_s = \bigcup_{a \in
-	\mathbb{Q}, a \leq s}\{X \land a < Y \land a\} \in \sigma(X \land a)
-	= \sigma(Y \land a)$. E temos que
+	\mathbb{Q}, a \leq s}\{X \land a < Y \land a\} \in \sigma(X \land s)
+	= \sigma(Y \land s)$. E temos que
 	$U_s$ cresce para $U$.
 
 	Vamos ver que $\Ex[\id[U](Y - X)] = 0$. Seja $\eps > 0$, existe
@@ -186,7 +186,7 @@
 		\Ex[Y/(X+1)] = \frac{b}{(a+b)(2a + b)}.
 	\]
 
-	(d) Vamos tentar o palpite óbvio do que deveria ser supondo. Se o
+	(d) Vamos tentar o palpite óbvio do que deveria ser. Se o
 	mundo fosse finito e bonito, teríamos
 	\[
 		\Ex[\id[X = n] \mid Y = y] \approx \Pr(X = n \mid Y = y) \approx
@@ -206,14 +206,14 @@
 	\]
 	Vamos ver que $Z_n = \Ex[\id[X = n] \mid Y]$ pois satisfaz a
 	propriedade da condicional. Como $Y$ é uma exponêncial
-	e $e^{aY} \leq 1$ vale que $||Z_n||_{L^1} \leq ba^n||Y||_{L^n} <
+	e $e^{-aY} \leq 1$ vale que $||Z_n||_{L^1} \leq ba^n||Y||_{L^n} <
 	\infty$. Logo $Z_n \in L^1$. Vamos provar que
 	\[\Ex[\id[C] \id[X = n]] = \Ex[\id[C]Z_n]\]
-	quando $C$ é da forma $\{s < Y < t\}$ que é um $\Pi$-sistema gerador
+	quando $C$ é da forma $\{s < Y \leq t\}$ que é um $\Pi$-sistema gerador
 	de $\sigma(Y)$ o que conclui a afirmação.
 	Mas isso segue da seguinte conta
 	\begin{align*}
-		\Ex[\id[C] \id[X = n]] = \Pr(X = n, s < Y < t) = b\int_s^t
+		\Ex[\id[C] \id[X = n]] = \Pr(X = n, s < Y \leq t) = b\int_s^t
 		\frac{(ay)^n}{n!}e^{-(a+b)y}dy\\
 		= b\int_s^t \frac{b(ay)^n e^{-ay}}{n!} dY(y) = \Ex[\id[C] Z_n].
 	\end{align*}
