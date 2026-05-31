@@ -31,7 +31,7 @@
 
 	Letra (b). Para a primeira equação, seja $Z = \Ex[X \mid X \land a]$, vamos
 	mostrar que se $\omega \in \{X \leq a\}$, então $Z(\omega) = X$ q.c e
-	se $\omega \in \{X > a\}$, então $Z(\omega) > a$ q.c. Seja
+	se $\omega \in \{X \geq a\}$, então $Z(\omega) \geq a$ q.c. Seja
 	\[B = \{X \leq a\} \cap \{X > Z\} = \{X \land a \leq a\} \cap \{X
 	\land a > Z\} \in \sigma(X \land a).\]
 	Pela propriedade da esperança condicional e pela definição de $B$, segue que
@@ -194,7 +194,7 @@
 	\]
 	Como não é o caso, vamos nos guiar por isso para encontrar um
 	candidato para $\Ex[\id[X = n] \mid Y]$.
-	É intuitivo ver que $\Pr(Y = y) \sim dY(y) = be^{-by}$ pela letra
+	É intuitivo ver que $\Pr(Y = y) \sim dY(y) = be^{-by}dy$ pela letra
 	(a). Seria natural que
 	\[
 		\frac{\Pr(X = n \land Y = y)}{\Pr(Y = y)} \sim
