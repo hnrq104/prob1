@@ -110,8 +110,6 @@
 	\end{align*}
 	Como $\eps$ foi arbitrário, $\Ex[\id[U](Y - X)] \leq 0$ e segue o resultado.
 
-
-
 \end{proof}
 
 \begin{exercise} [5]
@@ -154,39 +152,40 @@
 	\]
 	que é uma exponêncial com parâmetro $b$.
 
-	(b) Segue da completamente da expressão que (avaliando em cada ponto $n$)
+	(b)
+	(Seguindo a ideia do Bruno) Vamos usar um Kernel de Transição de
+	$(\Z_{\geq 0}, \mathcal{P}(\Z_{\geq 0}))$ para
+	$(\R, \mathcal{B})$. Defina
+	$T : \Z_{\geq 0} \times \mathcal{B}$ dado por
 	\[
-		\Pr(Y \leq t \mid X) = b\int_0^t \frac{(ay)^X}{X!}e^{-(a+b)y} dy.
+		T(n, E) = \frac{b\int_0^\infty \bm{1}[E] \frac{(ay)^n}{n!}
+		e^{-(a+b)}dy}{\frac{a^nb}{(a + b)^{n+1}}}
+		= \int_0^\infty \bm{1}[E]\frac{(a + b)^{n+1}y^n}{n!}e^{-(a + b)y}dy.
 	\]
+	É fácil ver que $T(\cdot, E)$ é mensurável ($\Z$ é discreto) e, dado
+	$n$, $T(n, \cdot)$ é uma medida absolutamente contínua em relação a Lebesgue.
+	Precisamos checar que a distribuição de $(X,Y)$ é dada pela
+	distribuição de $X$ (da letra anterior) unida a esse Kernel $T$.
+	Isso segue trivialmente de avaliar $\Pr_X \star T$ no $\Pi$-sistema
+	gerador de conjuntos da forma $\{n\} \times (a,b]$ e usar a
+	definição da distribuição conjunta da questão.
 
-	(c) Fixado $X$, temos (usando a mesma substituição que antes e $\Gamma$)
+	(c) Usando a letra anterior, basta fixar $X$ e calcular a esperança.
+	Temos (aqui denotamos $dT_n = d[T(n, \cdot)]$)
 	\[
-		\Ex [Y \mid X] = b\int_0^\infty \frac{a^Xy^{X + 1}}{X!}e^{-(a+b)y}dy =
-		\frac{(X+1)!}{X!} \bigg(\frac{a}{a + b}\bigg)^X \frac{b}{(a + b)^2}
-		= \frac{(X + 1)a^Xb}{(a+b)^{X + 2}}.
+		\Ex [Y \mid X = n] = \int_{0}^\infty y dT_n(y) = \int_0^\infty
+		\frac{(a + b)^{n+1}y^{n+1}}{n!} e^{-(a+b)y}dy = \frac{(n+1)}{(a+b)}.
 	\]
-	Logo, condicionando primeiro em $X$,
+	De outra forma, $\Ex[Y \mid X] = (X+1)/(a+b)$. Portanto,
+	condicionando primeiro em $X$,
 	\[
 		\Ex[Y/(X+1)] = \Ex[ \Ex[Y/(X+1) \mid X]] = \Ex[ \Ex[Y \mid
-		X]/(X+1)] = \frac{b}{(a+b)^2}\Ex[a^X/(a + b)^{X}]
-	\]
-	usando a distribuição de $X$ temos
-	\[
-		\Ex[a^X/(a + b)^{X}] = \sum_{n\geq 0} \Pr(X = n)
-		\frac{a^n}{(a+b)^n} = \frac{b}{(a + b)} \sum_{n \geq 0}
-		\bigg(\frac{a}{a + b}\bigg)^{2n}
-	\]
-	somando a geométrica achamos
-	\[
-		\Ex[a^X/(a + b)^{X}] = \frac{b}{(a + b)} \frac{1}{1 - (a/(a+b))^2}
-		= \frac{a+b}{2a + b}.
-	\]
-	Por fim
-	\[
-		\Ex[Y/(X+1)] = \frac{b}{(a+b)(2a + b)}.
+		X]/(X+1)] = \Ex\bigg[\frac{X+1}{(X+1)(a+b)}\bigg] = \frac{1}{a+b}.
 	\]
 
-	(d) Vamos tentar o palpite óbvio do que deveria ser. Se o
+	(d) (Escrevi isso antes de conversar com o Bruno, mas acho que ainda
+	está correto.)
+	Vamos tentar o palpite óbvio do que deveria ser. Se o
 	mundo fosse finito e bonito, teríamos
 	\[
 		\Ex[\id[X = n] \mid Y = y] \approx \Pr(X = n \mid Y = y) \approx
@@ -289,7 +288,6 @@
 	\]
 \end{proof}
 
-
 \subsection{Outros exercícios}
 
 %tem que escrever essa melhor.
@@ -334,8 +332,6 @@
 	E portanto $\{dF_X - dF_{-X} > 0\}$ tem medida positiva. Segue que
 	$F_X \neq F_{-X}$.
 \end{proof}
-
-
 
 \begin{exercise} [7]
 	Seja $(X_n) \sim U[0,1]^d$ i.i.d e $N \sim \text{Poi}(\lambda)$
